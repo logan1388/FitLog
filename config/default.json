@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://shiv88:shiv88@fitness-tracker-axoyx.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtToken": "token"
+}

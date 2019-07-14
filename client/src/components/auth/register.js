@@ -24,7 +24,7 @@ const Register = () => {
                             <input type="password" className="form-control" placeholder="Password" />
                         </div>
                         <div className="form-group">
-                            <input id='RegisterBtn' type="submit" value="Register" className="btn float-right login_btn" />
+                            <input id='RegisterBtn' type="submit" value="Register" className="btn float-right register_btn" />
                         </div>
                     </form>
                 </div>

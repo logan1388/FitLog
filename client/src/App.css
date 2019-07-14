@@ -1,7 +1,6 @@
 html, body, #root{
   height: 100vh;
   width: 100vw;
-  position: fixed;
 }
 
 h1, h2, h3{
@@ -28,7 +27,11 @@ h1, h2, h3{
   color: black;
 }
 
-.title :hover{
+.NavTitle a{
+  color: bisque;
+}
+
+.title :hover, .NavTitle :hover{
   color: white;
   text-decoration: none;
 }
@@ -39,10 +42,9 @@ h1, h2, h3{
 }
 
 .card{
-  height: 370px;
+  height: 425px;
   margin: auto;
   width: 400px;
-  margin-right: 5%;
   background-color: rgba(0,0,0,0.5) !important;
 }
 
@@ -86,19 +88,27 @@ input:focus{
   margin-right: 5px;
 }
 
-#LoginBtn, #RegisterBtn {
+#LoginBtn, #RegisterBtn, #DemoBtn {
   background-color: dodgerblue;
   color: black;
   font-weight: bold;
 }
+
+#DemoBtn{
+  margin: 0 41% 0 41%;
+}
+
+#RegisterBtn {
+  margin: 15px 37% 0 35%;
+}
     
-.login_btn{
+.login_btn, .register_btn, .demo_btn{
   color: black;
   background-color: #FFC312;
   width: 100px;
 }
     
-.login_btn:hover{
+.login_btn:hover, .register_btn:hover, .demo_btn:hover {
   color: black;
   background-color: white;
 }
@@ -117,4 +127,113 @@ input:focus{
 
 #SignUp, #ForgotPwd{
   color: bisque;
+}
+
+.SignInContainer {
+  margin: auto;
+}
+
+.NavTitle{
+  color: white;
+  margin: 0 auto;
+}
+
+#WOHistContainer {
+  /* width: 90vw;
+  margin: 30px 5%; */
+  height: 250px;
+  display: flow-root;
+  background: lightgrey;
+}
+
+#WOHistContainer span{
+  margin: 50px;
+  display: block;
+  font-weight: bold;
+}
+
+.WOOption {
+  /* width: 90vw; */
+  height: 150px;
+  /* margin: 30px 5%;
+  border-style: ridge; */
+  display: flex;
+  /* border-bottom-style: ridge; */
+}
+
+#WOOptionContainer1 {
+  /* background: url('../src/assets/Chest.jpg') no-repeat center; */
+  background-color: bisque
+}
+
+#WOOptionContainer2 {
+  /* background: url('../src/assets/Leg.jpeg') no-repeat center; */
+  background-color: bisque
+}
+
+#WOOptionContainer3 {
+  /* background: url('../src/assets/shoulder.png') no-repeat center; */
+  background-color: bisque
+}
+
+.WOOption span{
+  margin: 0 auto;
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 90px;
+  margin-bottom: 90px;
+}
+
+#ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn {
+  height: 60px;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 45px;
+  margin-bottom: 45px;
+  margin-left: 30%;
+  margin-right: 30%;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Media queries */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn {
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .col-md-4{
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 949px) {
+  #WOOptions {
+    margin-left: 5%;
+  }
+
+  #WOHistContainer span{
+    margin-left: 5%;
+    padding-left: 15px;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  #WOOptions {
+    margin-left: 10%;
+  }
+
+  #WOHistContainer span{
+    margin-left: 10%;
+    padding-left: 15px;
+  }
 }

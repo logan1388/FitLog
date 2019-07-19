@@ -23,6 +23,10 @@ class Chest extends Component {
                 DeclinePress: {
                     open: false,
                     label: 'Decline Press'
+                },
+                PecDeck: {
+                    open: false,
+                    label: 'Pec-Deck'
                 }
             }
         }
@@ -49,7 +53,6 @@ class Chest extends Component {
     render(){
         return(
             <Fragment>
-                <Header></Header>
                 <Exercises
                     exercises = {this.state.workouts}
                     expandExercise = {this.expandExercise}></Exercises>

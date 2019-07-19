@@ -13,7 +13,6 @@ class Dashboard extends Component {
     render(){
         return (
             <div>
-                <Header></Header>
                 <div id='WOHistContainer'>
                     <div>
                         <span>Previous Workout: </span>

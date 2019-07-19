@@ -14,7 +14,6 @@ class Landing extends Component {
         return (
             <div>
                 <div className='landing-container'>
-                    <h2 className='title'>FITLOG</h2>
                     <div className="SignInContainer">
                     <div className="card">
                         <div className="card-header">

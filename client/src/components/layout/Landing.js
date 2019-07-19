@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 class Landing extends Component {
     constructor(props) {
         super(props);
-        this.login = this.login.bind(this); 
+        this.demo = this.demo.bind(this); 
     }
-    login = () => {
-        console.log("Login clicked!");
+    demo = () => {
+        console.log("Demo!");
         this.props.history.push('/Dashboard');
     }
     render(){
@@ -38,7 +38,7 @@ class Landing extends Component {
                                     <input type="checkbox" />Remember Me
                               </div>
                                 <div className="form-group">
-                                    <input id='LoginBtn' type="submit" value="Login" onClick={this.login} className="btn float-right login_btn" />
+                                    <input id='LoginBtn' type="submit" value="Login" className="btn float-right login_btn" />
                                 </div>
                             </form>
                         </div>
@@ -51,16 +51,14 @@ class Landing extends Component {
                             </div>
                         </div>
                         <div className="form-group">
-                        <input id='DemoBtn' type="submit" value="Demo" className="btn" />
-                    </div>
-                    </div>
-                    
+                            <input id='DemoBtn' type="submit" value="Demo" className="btn" onClick={this.demo}/>
+                        </div>
+                    </div>          
                     </div>             
                 </div>
             </div>
         )
-    }
-    
+    }    
 }
 
 export default Landing;

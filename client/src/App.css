@@ -147,7 +147,7 @@ input:focus{
 }
 
 #WOHistContainer span{
-  margin: 50px;
+  margin: 30px 50px;
   display: block;
   font-weight: bold;
 }
@@ -185,7 +185,7 @@ input:focus{
   margin-bottom: 90px;
 }
 
-#ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn {
+#ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn, #BicepsBtn, #TricepsBtn {
   height: 60px;
   width: 200px;
   margin: 0 auto;
@@ -197,16 +197,35 @@ input:focus{
   font-weight: bold;
 }
 
+.ExerciseContainer {
+  margin: 30px;
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+.ExerciseContainer span {
+  display: block;
+  /* margin: 22px; */
+  padding: 25px;
+  font-weight: bold;
+}
+
+.ExpExerciseContainer {
+  height: 100px;
+  background-color: white;
+  border-style: unset;
+}
+
 /* Media queries */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-  #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn {
+  #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn, #BicepsBtn, #TricepsBtn {
     margin-left: 15%;
     margin-right: 15%;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn {
+  #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn, #BicepsBtn, #TricepsBtn {
     margin-left: 0;
     margin-right: 0;
   }

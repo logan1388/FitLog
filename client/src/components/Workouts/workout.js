@@ -1,18 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import Exercises from '../chest/exercises';
+import Exercises from './exercises';
 
-class Chest extends Component {
+class Workout extends Component {
     constructor(props){
         super(props);
         this.state = {};
         this.initial = {};
+        this.workout = this.props.match.params.id;
         this.getInitialState();
         this.expandExercise = this.expandExercise.bind(this);
     }
 
     getInitialState = () => {
-        axios.get('http://localhost:5000/api/exercises')
+        axios.get('http://localhost:5000/api/exercises/'+this.workout)
         .then(res =>  {
             var exercises = res.data;
             exercises.map(e => {
@@ -53,4 +54,4 @@ class Chest extends Component {
     }
 }
 
-export default Chest;
+export default Workout;

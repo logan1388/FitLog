@@ -5,7 +5,7 @@ import Landing from '../src/components/layout/Landing';
 import './App.css';
 import register from '../src/components/auth/register';
 import dashboard from '../src/components/dashboard/dashboard';
-import chest from '../src/components/chest/chest';
+import workout from './components/Workouts/workout';
 
 class App extends Component{
   render(){
@@ -15,7 +15,11 @@ class App extends Component{
         <Route exact path='/' component={Landing} />
         <Route path='/Register' component={register} />
         <Route path='/Dashboard' component={dashboard}/>
-        <Route path='/Chest' component={chest}/>
+        <Route 
+          path='/Workout/:id' 
+          component={workout}
+          //render = {(props) => <chest workout = "Chest" {...props}/>}
+          />
       </Router>
     )
   }

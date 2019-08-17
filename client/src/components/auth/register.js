@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 const Register = () => {
     return (
         <div className='landing-container'>
-            <h2 className='title'><Link to='/'>FITLOG</Link></h2>
             <div className="card">
                 <div className="card-header">
                     <h3>Register</h3>

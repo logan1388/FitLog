@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../layout/Header';
 
 class Dashboard extends Component {
     constructor(props){
         super(props);
-        this.chestWO = this.chestWO.bind(this);
+        this.selectWorkOut = this.selectWorkOut.bind(this);
     }
-    chestWO = () => {
-        this.props.history.push('/Chest');
+    selectWorkOut = (workout) => {
+        this.props.history.push('/Workout/'+workout);
     }
     render(){
         return (
             <div>
-                <Header></Header>
                 <div id='WOHistContainer'>
                     <div>
                         <span>Previous Workout: </span>
@@ -24,22 +21,22 @@ class Dashboard extends Component {
                 </div>
                 <div className='row' id="WOOptions">
                     <div className="col-md-4 col-sm-6 col-xs-12">
-                        <button id="ChestBtn" type="button" className="btn btn-outline-dark" onClick={this.chestWO}>CHEST</button>
+                        <button id="ChestBtn" type="button" className="btn btn-outline-dark" onClick={() => this.selectWorkOut('Chest')}>CHEST</button>
                     </div>
                     <div className="col-md-4 col-sm-6 col-xs-12">
-                        <button id="LegsBtn" type="button" className="btn btn-outline-dark">LEGS</button>
+                        <button id="LegsBtn" type="button" className="btn btn-outline-dark" onClick={() => this.selectWorkOut('Leg')}>LEGS</button>
                     </div>
                     <div className="col-md-4 col-sm-6 col-xs-12">
-                        <button id="ShoulderBtn" type="button" className="btn btn-outline-dark">SHOULDER</button>
+                        <button id="ShoulderBtn" type="button" className="btn btn-outline-dark" onClick={() => this.selectWorkOut('Shoulder')}>SHOULDER</button>
                     </div>
                     <div className="col-md-4 col-sm-6 col-xs-12">
-                        <button id="BackBtn" type="button" className="btn btn-outline-dark">BACK</button>                
+                        <button id="BackBtn" type="button" className="btn btn-outline-dark" onClick={() => this.selectWorkOut('Back')}>BACK</button>                
                     </div>
                     <div className="col-md-4 col-sm-6 col-xs-12">
-                        <button id="BicepsBtn" type="button" className="btn btn-outline-dark">BICEPS</button>                
+                        <button id="BicepsBtn" type="button" className="btn btn-outline-dark" onClick={() => this.selectWorkOut('Biceps')}>BICEPS</button>                
                     </div>
                     <div className="col-md-4 col-sm-6 col-xs-12">
-                        <button id="TricepsBtn" type="button" className="btn btn-outline-dark">TRICEPS</button>                
+                        <button id="TricepsBtn" type="button" className="btn btn-outline-dark" onClick={() => this.selectWorkOut('Triceps')}>TRICEPS</button>                
                     </div>
                 </div>
             </div>

@@ -1,56 +1,48 @@
 import React, { Component, Fragment } from 'react';
-import Header from '../layout/Header';
+import axios from 'axios';
 import Exercises from '../chest/exercises';
 
 class Chest extends Component {
     constructor(props){
         super(props);
-        this.state = this.getInitialState();
+        this.state = {};
+        this.initial = {};
+        this.getInitialState();
         this.expandExercise = this.expandExercise.bind(this);
     }
 
     getInitialState = () => {
-        const initialState = {
-            workouts : {
-                BenchPress: {
-                    open: false,
-                    label: 'Bench Press'
-                },
-                InclinePress: {
-                    open: false,
-                    label: 'Incline Press'
-                },
-                DeclinePress: {
-                    open: false,
-                    label: 'Decline Press'
-                },
-                PecDeck: {
-                    open: false,
-                    label: 'Pec-Deck'
-                }
-            }
-        }
-        return initialState;
-    }
-
-    resetState = () => {
-        this.setState(this.getInitialState());
+        axios.get('http://localhost:5000/api/exercises')
+        .then(res =>  {
+            var exercises = res.data;
+            exercises.map(e => {
+                e.open = false;
+            });
+            this.state.workouts = exercises;
+            this.initial.workouts = exercises;
+            this.setState({ workouts: res.data });
+        })
     }
 
     expandExercise = (exercise) => {
-        this.resetState();
-        const initialState = this.getInitialState();
+        const initialState = this.initial;
         const updatedExercises = {
             ...initialState.workouts
         };
         const flag = this.state.workouts[exercise]['open'];
         updatedExercises[exercise]['open'] = !flag;
-        this.setState({
-            workouts : updatedExercises
-        });
+        initialState.workouts.map(e => {
+            if(e.name != updatedExercises[exercise].name){
+                e.open = false;
+            }
+        })
+        this.setState({ workouts : updatedExercises });
     }
 
     render(){
+        if(!this.state.workouts){
+            return <div/>
+        }
         return(
             <Fragment>
                 <Exercises

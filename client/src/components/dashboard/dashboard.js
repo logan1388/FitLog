@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../layout/Header';
 
 class Dashboard extends Component {
     constructor(props){

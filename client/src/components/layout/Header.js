@@ -12,7 +12,7 @@ const Header = () => {
                 </div>
                 <span className='NavTitle h2'><Link to='/'>FITLOG</Link></span>
                 <div id='NavLinks'>
-                    <span><Link>Workouts</Link></span>
+                    <span><Link to='/Dashboard'>Workouts</Link></span>
                 </div>
             </nav>
         </Fragment>  

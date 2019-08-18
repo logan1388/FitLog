@@ -261,6 +261,15 @@ input:focus{
   display: none;
 }
 
+#LogList{
+  display: block;
+}
+
+#LogList span {
+  display: inline-block;
+  padding: 10px 15px;
+}
+
 /* Media queries */
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {

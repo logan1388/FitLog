@@ -31,6 +31,14 @@ class Workout extends Component {
             ...initialState.workouts
         };
         const flag = this.state.workouts[exercise]['open'];
+        const category = this.state.workouts[exercise]['category'];
+        const name = this.state.workouts[exercise]['name'];
+        if(!flag){
+            axios.get('http://localhost:5000/api/workoutlog/'+category+'/'+name)
+            .then(res => {
+                var log = res.data;
+            })
+        }
         updatedExercises[exercise]['open'] = !flag;
         initialState.workouts.map(e => {
             if(e.name != updatedExercises[exercise].name){

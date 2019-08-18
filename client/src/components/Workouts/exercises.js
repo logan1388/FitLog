@@ -9,7 +9,8 @@ const exercises = (props) => {
                     return (<Workoutlog
                         key = {key}
                         clicked = {() => props.expandExercise(key)}
-                        isOpened = {props.exercises[key]['open']}>{props.exercises[key]['name']}
+                        isOpened = {props.exercises[key]['open']}
+                        category = {props.exercises[key]['category']}>{props.exercises[key]['name']}
                     </Workoutlog>)
                 });      
             });

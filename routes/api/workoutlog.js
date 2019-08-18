@@ -24,7 +24,7 @@ router.post('/',
         try{
             let workoutlog = {};
             switch(req.body.category){
-                case 'chest': {
+                case 'Chest': {
                     workoutlog = new ChestWorkoutlog({
                         name,
                         date,
@@ -34,7 +34,7 @@ router.post('/',
                     });
                     break;
                 }
-                case 'leg': {
+                case 'Leg': {
                     workoutlog = new LegWorkoutlog({
                         name,
                         date,
@@ -44,7 +44,7 @@ router.post('/',
                     });
                     break;
                 }
-                case 'back': {
+                case 'Back': {
                     workoutlog = new BackWorkoutlog({
                         name,
                         date,
@@ -75,17 +75,17 @@ router.get('/:category/:name',
         try{
             const name = req.params.name;
             switch(req.params.category){
-                case 'chest': {
+                case 'Chest': {
                     const exerciselogs = await ChestWorkoutlog.find({ name: name});
                     res.json(exerciselogs);
                     break;
                 }
-                case 'leg': {
+                case 'Leg': {
                     const exerciselogs = await LegWorkoutlog.find({ name: name});
                     res.json(exerciselogs);
                     break;
                 }
-                case 'back': {
+                case 'Back': {
                     const exerciselogs = await BackWorkoutlog.find({ name: name});
                     res.json(exerciselogs);
                     break;

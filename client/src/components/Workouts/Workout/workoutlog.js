@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Collapse} from 'react-collapse';
 import Workouthistory from './workouthistory';
+import axios from 'axios';
 
 class Workoutlog extends Component {
     constructor(props){
@@ -33,8 +34,7 @@ class Workoutlog extends Component {
     countChange = (e) => {
         this.setState({count: e.target.value});
     }
-
-    addLog = () => {
+    getTimestamp = () => {
         var date = new Date().getDate();
         var month = new Date().getMonth()+1;
         var year = new Date().getFullYear();
@@ -47,9 +47,28 @@ class Workoutlog extends Component {
         if(min<10) min = '0' + min;
         if(sec<10) sec = '0' + sec;
         let timestamp = month+'/'+date+'/'+year+' '+hours+':'+min+':'+sec;
+        return timestamp;
+    }
+
+    addLog = () => {
+        let timestamp = this.getTimestamp();
         this.state.log.push({date:timestamp, weight: this.state.weight, unit: this.state.unit, count: this.state.count})
         this.setState({log: this.state.log});
         this.getInitialState();
+        axios.post('http://localhost:5000/api/workoutlog/',{
+            "category": this.props.category,
+            "name": this.props.children,
+            "date": timestamp,
+            "weight": this.state.weight,
+            "unit": this.state.unit,
+            "count": this.state.count
+        })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     render(){

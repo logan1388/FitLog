@@ -5,7 +5,6 @@ import Workouthistory from './workouthistory';
 class Workoutlog extends Component {
     constructor(props){
         super(props);    
-        this.getInitialState();
         this.state = {
             weight: 0,
             count: 0,
@@ -13,12 +12,18 @@ class Workoutlog extends Component {
             log: []
         }
     }
+
+    componentDidMount = () => {
+        this.getInitialState();
+    }
+
     getInitialState = () => {
         this.setState({
             weight: 0,
             count: 0
         });
     }
+
     weightChange = (e) => {
         this.setState({weight: e.target.value});
     }
@@ -28,6 +33,7 @@ class Workoutlog extends Component {
     countChange = (e) => {
         this.setState({count: e.target.value});
     }
+
     addLog = () => {
         var date = new Date().getDate();
         var month = new Date().getMonth()+1;
@@ -40,11 +46,12 @@ class Workoutlog extends Component {
         if(hours<10) hours = '0' + hours;
         if(min<10) min = '0' + min;
         if(sec<10) sec = '0' + sec;
-        let timestamp = date+'/'+month+'/'+year+' '+hours+':'+min+':'+sec;
+        let timestamp = month+'/'+date+'/'+year+' '+hours+':'+min+':'+sec;
         this.state.log.push({date:timestamp, weight: this.state.weight, unit: this.state.unit, count: this.state.count})
         this.setState({log: this.state.log});
         this.getInitialState();
     }
+
     render(){
         let log;
         if(this.state.log.length > 0){

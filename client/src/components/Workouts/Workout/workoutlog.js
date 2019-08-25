@@ -5,12 +5,12 @@ import axios from 'axios';
 
 class Workoutlog extends Component {
     constructor(props){
-        super(props);    
+        super(props);  
         this.state = {
             weight: 0,
             count: 0,
             unit: 'lbs',
-            log: []
+            log: {}
         }
     }
 
@@ -87,8 +87,9 @@ class Workoutlog extends Component {
         }   
         return (
             <Fragment>
-                <div className='ExerciseContainer'>
-                        <span onClick={this.props.clicked}>{this.props.children}</span>
+                {/* <div className='ExerciseContainer'>
+                        <span onClick={this.props.clicked}>{this.props.children}</span> */}
+                        <div className="EC">
                         <Collapse isOpened={this.props.isOpened}>
                             <div className='ExpExerciseContainer'>
                                 <div className='DetailsLogContainer'>
@@ -108,8 +109,9 @@ class Workoutlog extends Component {
                                 </div>
                                 {log}          
                             </div>
-                        </Collapse>             
-                    </div>
+                        </Collapse>     
+                        </div>        
+                    {/* </div> */}
             </Fragment>
         )
     } 

@@ -46,7 +46,7 @@ class Landing extends Component {
                                 Don't have an account?<Link id='SignUp' to='/Register'>Sign Up</Link>
                             </div>
                             <div className="d-flex justify-content-center">
-                                <a id='ForgotPwd'>Forgot your password?</a>
+                                <Link id='ForgotPwd' to='/Register'>Forgot your password?</Link>
                             </div>
                         </div>
                         <div className="form-group">

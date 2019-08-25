@@ -16,9 +16,8 @@ class App extends Component{
         <Route path='/Register' component={register} />
         <Route path='/Dashboard' component={dashboard}/>
         <Route 
-          path='/Workout/:id' 
-          component={workout}
-          //render = {(props) => <chest workout = "Chest" {...props}/>}
+          path = '/Workout/:id' 
+          component = {workout}
           />
       </Router>
     )

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Collapse} from 'react-collapse';
 import Workouthistory from './workouthistory';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Workoutlog extends Component {
     constructor(props){
@@ -15,6 +16,7 @@ class Workoutlog extends Component {
     }
 
     componentDidMount = () => {
+        console.log("Workoutlog!!!");
         this.getInitialState();
     }
 
@@ -87,9 +89,9 @@ class Workoutlog extends Component {
         }   
         return (
             <Fragment>
-                {/* <div className='ExerciseContainer'>
-                        <span onClick={this.props.clicked}>{this.props.children}</span> */}
-                        <div className="EC">
+                <div className='ExerciseContainer'>
+                        <span onClick={this.props.clicked}>{this.props.children}</span>
+                        {/* <div className="EC"> */}
                         <Collapse isOpened={this.props.isOpened}>
                             <div className='ExpExerciseContainer'>
                                 <div className='DetailsLogContainer'>
@@ -110,11 +112,18 @@ class Workoutlog extends Component {
                                 {log}          
                             </div>
                         </Collapse>     
-                        </div>        
-                    {/* </div> */}
+                        {/* </div>         */}
+                    </div>
             </Fragment>
         )
     } 
 }
 
-export default Workoutlog;
+const mapStateToProps = state => {
+    console.log(state.logs);
+    return {
+        logs: state.logs
+    }
+};
+
+export default connect(mapStateToProps)(Workoutlog);

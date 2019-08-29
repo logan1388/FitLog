@@ -1,5 +1,13 @@
 import axios from 'axios';
 
+export const FETCH_EXERCISES_BEGIN = "FETCH_EXERCISES_BEGIN";
+export const FETCH_EXERCISES_SUCCESS = "FETCH_EXERCISES_SUCCESS";
+export const FETCH_EXERCISES_FAILURE = "FETCH_EXERCISES_FAILURE";
+
+export const EXPAND_EXERCISE_BEGIN = "EXPAND_EXERCISE_BEGIN";
+export const EXPAND_EXERCISE_SUCCESS = "EXPAND_EXERCISE_SUCCESS";
+export const EXPAND_EXERCISE_FAILURE = "EXPAND_EXERCISE_FAILURE";
+
 export const fetchExercises = (workout) => {
     return dispatch => {
         dispatch(fetchExercisesBegin());
@@ -17,11 +25,19 @@ export const fetchExercises = (workout) => {
     };
 }
 
-export const FETCH_EXERCISES_BEGIN = "FETCH_EXERCISES_BEGIN";
-export const FETCH_EXERCISES_SUCCESS =
-  "FETCH_EXERCISES_SUCCESS";
-export const FETCH_EXERCISES_FAILURE =
-  "FETCH_EXERCISES_FAILURE";
+export const expandExercise = (category, name) => {
+    return dispatch => {
+        dispatch(expandExerciseBegin());
+        axios.get('http://localhost:5000/api/workoutlog/'+category+'/'+name)
+        .then(res => {
+                var logs = res.data;
+                console.log(logs);
+                dispatch(expandExerciseSuccess(logs));
+                return logs;
+            })
+            .catch(error => dispatch(expandExerciseFailure(error)));
+    };
+}
 
 export const fetchExercisesBegin = () => ({
     type: FETCH_EXERCISES_BEGIN
@@ -34,5 +50,19 @@ export const fetchExercisesSuccess = exercises => ({
 
 export const fetchExercisesFailure = error => ({
     type: FETCH_EXERCISES_FAILURE,
+    payload: { error }
+});
+
+export const expandExerciseBegin = () => ({
+    type: EXPAND_EXERCISE_BEGIN
+});
+
+export const expandExerciseSuccess = logs => ({
+    type: EXPAND_EXERCISE_SUCCESS,
+    payload: { logs }
+});
+
+export const expandExerciseFailure = error => ({
+    type: EXPAND_EXERCISE_FAILURE,
     payload: { error }
 });

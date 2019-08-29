@@ -13,11 +13,23 @@ class Workoutlog extends Component {
             unit: 'lbs',
             log: {}
         }
+        this.logs = null;
     }
 
     componentDidMount = () => {
-        console.log("Workoutlog!!!");
         this.getInitialState();
+        if(this.props.logs.length > 0){
+            this.logs = Object.keys(this.props.logs)
+            .map(key => {
+                return [...Array(this.props.logs[key])].map(() => {
+                    return (<Workouthistory
+                        key = {key}
+                        log = {this.props.logs[key]}></Workouthistory>)
+                });      
+            });
+        } else {
+            this.logs = <div></div>
+        }   
     }
 
     getInitialState = () => {
@@ -74,24 +86,12 @@ class Workoutlog extends Component {
     }
 
     render(){
-        let log;
-        if(this.state.log.length > 0){
-            log = Object.keys(this.state.log)
-            .map(key => {
-                return [...Array(this.state.log[key])].map(() => {
-                    return (<Workouthistory
-                        key = {key}
-                        log = {this.state.log[key]}></Workouthistory>)
-                });      
-            });
-        } else {
-            log = <div></div>
-        }   
+        
         return (
             <Fragment>
-                <div className='ExerciseContainer'>
-                        <span onClick={this.props.clicked}>{this.props.children}</span>
-                        {/* <div className="EC"> */}
+                {/* <div className='ExerciseContainer'>
+                        <span onClick={this.props.clicked}>{this.props.children}</span> */}
+                        <div className="EC">
                         <Collapse isOpened={this.props.isOpened}>
                             <div className='ExpExerciseContainer'>
                                 <div className='DetailsLogContainer'>
@@ -109,11 +109,11 @@ class Workoutlog extends Component {
                                 <div id="SaveLogBtn">
                                     <button disabled={!(this.state.weight > 0 && this.state.count > 0)} type="button" className="btn btn-outline-dark" onClick={this.addLog}>Add</button>
                                 </div>
-                                {log}          
+                                {this.logs}          
                             </div>
                         </Collapse>     
-                        {/* </div>         */}
-                    </div>
+                        </div>        
+                    {/* </div> */}
             </Fragment>
         )
     } 

@@ -12,7 +12,6 @@ class Workout extends Component {
             workouts: [],
             log: []
         };
-        this.initial = {};
         this.workout = this.props.match.params.id;
         this.expandExercise = this.expandExercise.bind(this);
     }
@@ -48,9 +47,8 @@ class Workout extends Component {
         return Object.keys(this.props.workouts)
         .map(key => {
             return [...Array(this.props.workouts[key])].map(() => {
-                return (<Fragment>
-                <div key = {this.props.workouts[key]._id} 
-                    className = 'ExerciseContainer'
+                return (<Fragment key = {this.props.workouts[key]._id}>
+                <div className = 'ExerciseContainer'
                     onClick = {() => this.expandExercise(key)}
                     ><span>{this.props.workouts[key]['name']}</span>
                 </div>
@@ -62,7 +60,6 @@ class Workout extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.workouts);
     return {
         workouts: state.workouts,
         expandExercise: state.expandExercise,

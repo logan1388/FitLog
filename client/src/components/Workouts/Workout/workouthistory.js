@@ -9,9 +9,8 @@ class workouthistory extends Component {
         return Object.keys(this.props.logs)
             .map(key => {
                 return [...Array(this.props.logs[key])].map(() => {
-                    console.log(this.props.logs);
-                    return (<Fragment>
-                        <div id='LogList' key={key}>
+                    return (<Fragment key={key}>
+                        <div id='LogList'>
                             <span>{this.props.logs[key].date}</span>
                             <span>{this.props.logs[key].weight}</span>
                             <span>{this.props.logs[key].unit}</span>

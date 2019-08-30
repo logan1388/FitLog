@@ -3,6 +3,7 @@ import {Collapse} from 'react-collapse';
 import Workouthistory from './workouthistory';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { addExerciseLog } from '../../../store/actions';
 
 class Workoutlog extends Component {
     constructor(props){
@@ -14,22 +15,11 @@ class Workoutlog extends Component {
             log: {}
         }
         this.logs = null;
+        this.exerciseLog = {};
     }
 
     componentDidMount = () => {
         this.getInitialState();
-        if(this.props.logs.length > 0){
-            this.logs = Object.keys(this.props.logs)
-            .map(key => {
-                return [...Array(this.props.logs[key])].map(() => {
-                    return (<Workouthistory
-                        key = {key}
-                        log = {this.props.logs[key]}></Workouthistory>)
-                });      
-            });
-        } else {
-            this.logs = <div></div>
-        }   
     }
 
     getInitialState = () => {
@@ -66,62 +56,52 @@ class Workoutlog extends Component {
 
     addLog = () => {
         let timestamp = this.getTimestamp();
-        this.state.log.push({date:timestamp, weight: this.state.weight, unit: this.state.unit, count: this.state.count})
-        this.setState({log: this.state.log});
         this.getInitialState();
-        axios.post('http://localhost:5000/api/workoutlog/',{
+        this.exerciseLog = {
             "category": this.props.category,
             "name": this.props.children,
             "date": timestamp,
             "weight": this.state.weight,
             "unit": this.state.unit,
             "count": this.state.count
-        })
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        };
+        this.props.dispatch(addExerciseLog(this.exerciseLog, this.props.logs, this.props.workouts));
     }
 
     render(){
         
         return (
             <Fragment>
-                {/* <div className='ExerciseContainer'>
-                        <span onClick={this.props.clicked}>{this.props.children}</span> */}
-                        <div className="EC">
-                        <Collapse isOpened={this.props.isOpened}>
-                            <div className='ExpExerciseContainer'>
-                                <div className='DetailsLogContainer'>
-                                    <span>Weight</span>                            
-                                    <input type='number' value={this.state.weight} onChange={this.weightChange}/>
-                                    <select value={this.state.unit} onChange={this.unitChange}>
-                                        <option value='lbs'>lbs</option>
-                                        <option value='kgs'>kgs</option>
-                                    </select>
-                                </div>
-                                <div className='DetailsLogContainer'>
-                                    <span>Count</span>
-                                    <input type='number' value={this.state.count} onChange={this.countChange}/>
-                                </div>               
-                                <div id="SaveLogBtn">
-                                    <button disabled={!(this.state.weight > 0 && this.state.count > 0)} type="button" className="btn btn-outline-dark" onClick={this.addLog}>Add</button>
-                                </div>
-                                {this.logs}          
+                <div className="EC">
+                    <Collapse isOpened={this.props.isOpened}>
+                        <div className='ExpExerciseContainer'>
+                            <div className='DetailsLogContainer'>
+                                <span>Weight</span>                            
+                                <input type='number' value={this.state.weight} onChange={this.weightChange}/>
+                                <select value={this.state.unit} onChange={this.unitChange}>
+                                    <option value='lbs'>lbs</option>
+                                    <option value='kgs'>kgs</option>
+                                </select>
                             </div>
-                        </Collapse>     
-                        </div>        
-                    {/* </div> */}
+                            <div className='DetailsLogContainer'>
+                                <span>Count</span>
+                                <input type='number' value={this.state.count} onChange={this.countChange}/>
+                            </div>               
+                            <div id="SaveLogBtn">
+                                <button disabled={!(this.state.weight > 0 && this.state.count > 0)} type="button" className="btn btn-outline-dark" onClick={this.addLog}>Add</button>
+                            </div>
+                            <Workouthistory></Workouthistory>
+                        </div>
+                    </Collapse>     
+                </div>        
             </Fragment>
         )
     } 
 }
 
 const mapStateToProps = state => {
-    console.log(state.logs);
     return {
+        workouts: state.workouts,
         logs: state.logs
     }
 };

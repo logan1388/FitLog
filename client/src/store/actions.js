@@ -12,6 +12,10 @@ export const CLOSE_EXPANDEXERCISE_BEGIN = "CLOSE_EXPANDEXERCISE_BEGIN";
 export const CLOSE_EXPANDEXERCISE_SUCCESS = "CLOSE_EXPANDEXERCISE_SUCCESS";
 export const CLOSE_EXPANDEXERCISE_FAILURE = "CLOSE_EXPANDEXERCISE_FAILURE";
 
+export const ADD_EXERCISELOG_BEGIN = "ADD_EXERCISELOG_BEGIN";
+export const ADD_EXERCISELOG_SUCCESS = "ADD_EXERCISELOG_SUCCESS";
+export const ADD_EXERCISELOG_FAILURE = "ADD_EXERCISELOG_FAILURE";
+
 export const fetchExercises = (workout) => {
     return dispatch => {
         dispatch(fetchExercisesBegin());
@@ -61,6 +65,19 @@ export const closeExpandExercise = (workouts, exercise) => {
     }  
 }
 
+export const addExerciseLog = (exerciseLog, logToBeUpdated, workouts) => {
+    return dispatch => {
+        logToBeUpdated.push(exerciseLog);
+        axios.post('http://localhost:5000/api/workoutlog/',exerciseLog)
+        .then(res => {
+            console.log(res);
+            dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name));
+            return logToBeUpdated;
+        })
+        .catch(error => dispatch(addExerciseLogFailure(error)));
+    }
+}
+
 export const fetchExercisesBegin = () => ({
     type: FETCH_EXERCISES_BEGIN
 });
@@ -92,4 +109,18 @@ export const expandExerciseFailure = error => ({
 export const closeExpandExerciseSuccess = exercises => ({
     type: CLOSE_EXPANDEXERCISE_SUCCESS,
     payload: { exercises }
+});
+
+export const addExerciseLogBegin = () => ({
+    type: ADD_EXERCISELOG_BEGIN
+});
+
+export const addExerciseLogSuccess = logs => ({
+    type: ADD_EXERCISELOG_SUCCESS,
+    payload: { logs }
+});
+
+export const addExerciseLogFailure = error => ({
+    type: ADD_EXERCISELOG_FAILURE,
+    payload: { error }
 });

@@ -5,14 +5,14 @@ import {
     EXPAND_EXERCISE_BEGIN,
     EXPAND_EXERCISE_SUCCESS,
     EXPAND_EXERCISE_FAILURE,
-    CLOSE_EXPANDEXERCISE_BEGIN,
     CLOSE_EXPANDEXERCISE_SUCCESS,
-    CLOSE_EXPANDEXERCISE_FAILURE
+    ADD_EXERCISELOG_BEGIN,
+    ADD_EXERCISELOG_SUCCESS,
+    ADD_EXERCISELOG_FAILURE
   } from "../store/actions";
   
   const initialState = {
     workouts: [],
-    expandExercise: false,
     logs: [],
     loading: false,
     error: null
@@ -68,13 +68,6 @@ import {
               logs: []
             };
         
-        case CLOSE_EXPANDEXERCISE_BEGIN: 
-            return {
-                ...state,
-                loading: true,
-                error: null
-            };
-    
         case CLOSE_EXPANDEXERCISE_SUCCESS:
             return {
                 ...state,
@@ -82,13 +75,30 @@ import {
                 expandExercise: false,
                 workouts: action.payload.exercises
             };
-    
-        case CLOSE_EXPANDEXERCISE_FAILURE:
+        
+        case ADD_EXERCISELOG_BEGIN:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+          
+        case ADD_EXERCISELOG_SUCCESS:
+            console.log(action.payload.logs);
+            return {
+                ...state,
+                loading: false,
+                logs: action.payload.logs
+            };
+          
+        case ADD_EXERCISELOG_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload.error,
+                logs: []
             };
+    
       default:
         return state;
     }

@@ -1,16 +1,32 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 
-const workouthistory = (props) => {
-    return(
-        <Fragment>
-            <div id='LogList'>
-                <span>{props.log.date}</span>
-                <span>{props.log.weight}</span>
-                <span>{props.log.unit}</span>
-                <span>{props.log.count}</span>
-            </div>
-        </Fragment>
-    )
+class workouthistory extends Component {
+    constructor(props){
+        super(props);
+    }
+    render(){
+        return Object.keys(this.props.logs)
+            .map(key => {
+                return [...Array(this.props.logs[key])].map(() => {
+                    console.log(this.props.logs);
+                    return (<Fragment>
+                        <div id='LogList' key={key}>
+                            <span>{this.props.logs[key].date}</span>
+                            <span>{this.props.logs[key].weight}</span>
+                            <span>{this.props.logs[key].unit}</span>
+                            <span>{this.props.logs[key].count}</span>
+                        </div>
+                    </Fragment>)
+                });
+            });
+    }
 }
 
-export default workouthistory;
+const mapStateToProps = state => {
+    return {
+        logs: state.logs
+    }
+}
+
+export default connect(mapStateToProps)(workouthistory);

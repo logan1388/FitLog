@@ -8,6 +8,10 @@ export const EXPAND_EXERCISE_BEGIN = "EXPAND_EXERCISE_BEGIN";
 export const EXPAND_EXERCISE_SUCCESS = "EXPAND_EXERCISE_SUCCESS";
 export const EXPAND_EXERCISE_FAILURE = "EXPAND_EXERCISE_FAILURE";
 
+export const CLOSE_EXPANDEXERCISE_BEGIN = "CLOSE_EXPANDEXERCISE_BEGIN";
+export const CLOSE_EXPANDEXERCISE_SUCCESS = "CLOSE_EXPANDEXERCISE_SUCCESS";
+export const CLOSE_EXPANDEXERCISE_FAILURE = "CLOSE_EXPANDEXERCISE_FAILURE";
+
 export const fetchExercises = (workout) => {
     return dispatch => {
         dispatch(fetchExercisesBegin());
@@ -18,8 +22,8 @@ export const fetchExercises = (workout) => {
                     e.open = false;
                     e.log = null;
                 });  
-                dispatch(fetchExercisesSuccess(res.data));
-                return res.data;
+                dispatch(fetchExercisesSuccess(exercises));
+                return exercises;
             })
             .catch(error => dispatch(fetchExercisesFailure(error)));
     };
@@ -37,6 +41,17 @@ export const expandExercise = (category, name) => {
             })
             .catch(error => dispatch(expandExerciseFailure(error)));
     };
+}
+
+export const closeExpandExercise = (workouts, exercise) => {
+    return dispatch => {
+        workouts.map(e =>  {
+            if(e.name == exercise){
+                e.open = false;
+            }
+        });
+        dispatch(closeExpandExerciseSuccess(workouts));
+    }  
 }
 
 export const fetchExercisesBegin = () => ({
@@ -65,4 +80,9 @@ export const expandExerciseSuccess = logs => ({
 export const expandExerciseFailure = error => ({
     type: EXPAND_EXERCISE_FAILURE,
     payload: { error }
+});
+
+export const closeExpandExerciseSuccess = exercises => ({
+    type: CLOSE_EXPANDEXERCISE_SUCCESS,
+    payload: { exercises }
 });

@@ -3,6 +3,7 @@ import Workoutlog from './Workout/workoutlog';
 import { connect } from 'react-redux';
 import { fetchExercises } from '../../store/actions';
 import { expandExercise } from '../../store/actions';
+import { closeExpandExercise } from '../../store/actions';
 
 class Workout extends Component {
     constructor(props){
@@ -44,6 +45,7 @@ class Workout extends Component {
             </Workoutlog>)
             console.log(updatedExercises);
         }else{
+            this.props.dispatch(closeExpandExercise(this.props.workouts, name));
             updatedExercises[exercise].log = null;
         }
         updatedExercises[exercise]['open'] = !flag;
@@ -78,6 +80,7 @@ const mapStateToProps = state => {
     console.log(state.workouts);
     return {
         workouts: state.workouts,
+        expandExercise: state.expandExercise,
         logs: state.logs
     }
 };

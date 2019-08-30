@@ -22,38 +22,23 @@ class Workout extends Component {
     }
 
     expandExercise = (exercise) => {
-        const initialState = this.props.workouts;
-        const updatedExercises = initialState
-        console.log(exercise);
+        const updatedExercises = this.props.workouts;
         const flag = this.props.workouts[exercise]['open'];
         const category = this.props.workouts[exercise]['category'];
         const name = this.props.workouts[exercise]['name'];
-        Object.keys(initialState).map(e => {
-            if(updatedExercises[e].name !== updatedExercises[exercise].name && updatedExercises[e].open === true){
-                console.log("Open: "+e);
-                updatedExercises[e].open = false;
-                updatedExercises[e].log = null;
-            }
-        })
         if(!flag){
-            this.props.dispatch(expandExercise(category, name));
+            this.props.dispatch(expandExercise(this.props.workouts, category, name));
             updatedExercises[exercise].log = (<Workoutlog
                 key = {this.props.workouts[exercise]._id}
                 isOpened = {true}
                 logs = {this.props.logs}
                 category = {this.props.workouts[exercise]['category']}>{this.props.workouts[exercise]['name']}
             </Workoutlog>)
-            console.log(updatedExercises);
         }else{
             this.props.dispatch(closeExpandExercise(this.props.workouts, name));
             updatedExercises[exercise].log = null;
         }
         updatedExercises[exercise]['open'] = !flag;
-        initialState.map(e => {
-            if(e.name !== updatedExercises[exercise].name){
-                e.open = false;
-            }
-        })
     }
 
     render(){

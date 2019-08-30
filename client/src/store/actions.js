@@ -29,8 +29,14 @@ export const fetchExercises = (workout) => {
     };
 }
 
-export const expandExercise = (category, name) => {
+export const expandExercise = (workouts, category, name) => {
     return dispatch => {
+        workouts.map(e => {
+            if(e.name !== name && e.open === true){
+                e.open = false;
+                e.log = null;
+            }
+        })
         dispatch(expandExerciseBegin());
         axios.get('http://localhost:5000/api/workoutlog/'+category+'/'+name)
         .then(res => {
@@ -46,8 +52,9 @@ export const expandExercise = (category, name) => {
 export const closeExpandExercise = (workouts, exercise) => {
     return dispatch => {
         workouts.map(e =>  {
-            if(e.name == exercise){
+            if(e.name !== exercise){
                 e.open = false;
+                e.log = null;
             }
         });
         dispatch(closeExpandExerciseSuccess(workouts));

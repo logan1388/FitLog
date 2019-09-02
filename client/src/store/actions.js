@@ -45,7 +45,9 @@ export const expandExercise = (workouts, category, name) => {
         axios.get('http://localhost:5000/api/workoutlog/'+category+'/'+name)
         .then(res => {
                 var logs = res.data;
-                console.log(logs);
+                logs.map(log => {
+                    log.date = new Date(log.date).toLocaleString();
+                });
                 dispatch(expandExerciseSuccess(logs));
                 return logs;
             })
@@ -70,7 +72,6 @@ export const addExerciseLog = (exerciseLog, logToBeUpdated, workouts) => {
         logToBeUpdated.push(exerciseLog);
         axios.post('http://localhost:5000/api/workoutlog/',exerciseLog)
         .then(res => {
-            console.log(res);
             dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name));
             return logToBeUpdated;
         })

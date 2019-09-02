@@ -16,6 +16,7 @@ class Workoutlog extends Component {
         }
         this.logs = null;
         this.exerciseLog = {};
+        this.logTitle = null;
     }
 
     componentDidMount = () => {
@@ -69,7 +70,16 @@ class Workoutlog extends Component {
     }
 
     render(){
-        
+        if(this.props.logs.length > 0){
+            this.logTitle = (
+                <div id='LogsTitle'>
+                    <span>Date & Time</span>
+                    <span>Weight</span>
+                    <span>Unit</span>
+                    <span>Count</span>
+                </div>
+            )
+        }       
         return (
             <Fragment>
                 <div className="EC">
@@ -90,6 +100,7 @@ class Workoutlog extends Component {
                             <div id="SaveLogBtn">
                                 <button disabled={!(this.state.weight > 0 && this.state.count > 0)} type="button" className="btn btn-outline-dark" onClick={this.addLog}>Add</button>
                             </div>
+                            {this.logTitle}
                             <Workouthistory></Workouthistory>
                         </div>
                     </Collapse>     

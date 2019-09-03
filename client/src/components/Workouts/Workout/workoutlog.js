@@ -73,10 +73,10 @@ class Workoutlog extends Component {
         if(this.props.logs.length > 0){
             this.logTitle = (
                 <div id='LogsTitle'>
-                    <span>Date & Time</span>
-                    <span>Weight</span>
-                    <span>Unit</span>
-                    <span>Count</span>
+                    <span id='Title_DateTime'>Date & Time</span>
+                    <span id='Title_Weight'>Weight</span>
+                    <span id='Title_Unit'>Unit</span>
+                    <span id='Title_Count'>Count</span>
                 </div>
             )
         }       
@@ -101,7 +101,9 @@ class Workoutlog extends Component {
                                 <button disabled={!(this.state.weight > 0 && this.state.count > 0)} type="button" className="btn btn-outline-dark" onClick={this.addLog}>Add</button>
                             </div>
                             {this.logTitle}
-                            <Workouthistory></Workouthistory>
+                            <div id='LogContainer'>
+                                <Workouthistory></Workouthistory>
+                            </div>
                         </div>
                     </Collapse>     
                 </div>        

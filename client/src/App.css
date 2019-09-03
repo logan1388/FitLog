@@ -214,7 +214,8 @@ input:focus{
 }
 
 .ExerciseContainer {
-  margin: 30px;
+  width: 90vw;
+  margin: 30px 5%;
   background-color: lightgrey;
   cursor: pointer;
 }
@@ -226,12 +227,17 @@ input:focus{
   font-weight: bold;
 }
 
+.EC {
+  width: 90vw;
+  margin: 0 5%;
+}
+
 .ExpExerciseContainer {
   height: auto;
   background-color: white;
   border-style: unset;
   text-align: center;
-  padding: 15px 0px;
+  padding: 0px 0px 15px 0px;
   cursor: default;
 }
 
@@ -261,19 +267,64 @@ input:focus{
   display: none;
 }
 
-#LogList, #LogsTitle{
+.LogList, #LogsTitle{
   display: block;
 }
 
 #LogsTitle span {
   display: inline-block;
-  padding: 10px 15px;
   font-weight: bold;
 }
 
-#LogList span {
+#Title_DateTime {
   display: inline-block;
-  padding: 10px 15px;
+  font-weight: bold;
+  padding: 10px 0px 10px 20px;
+  margin: 0px 35px 0px 45px;
+}
+
+#Title_Weight, #Title_Unit, #Title_Count {
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px 0px;
+  margin: 0px 0px 0px 25px;
+}
+
+#LogContainer {
+  margin: 0 15%;
+  max-height: 150px;
+  overflow: auto;
+}
+
+.Log_DateTime {
+  display: inline-block;
+  width: 190px;
+  text-align: right;
+  padding: 3px 0px;
+}
+
+.Log_Weight {
+  display: inline-block;
+  width: 40px;
+  padding: 3px 0px 3px 0px;
+  margin: 0px 0px 0px 35px;
+  text-align: right;
+}
+
+.Log_Unit {
+  display: inline-block;
+  width: 25px;
+  padding: 3px 0px 3px 0px;
+  margin: 0px 0px 0px 35px;
+  text-align: right;
+}
+
+.Log_Count {
+  display: inline-block;
+  width: 25px;
+  padding: 3px 0px 3px 0px;
+  margin: 0px 0px 0px 45px;
+  text-align: right;
 }
 
 /* Media queries */

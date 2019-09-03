@@ -10,11 +10,11 @@ class workouthistory extends Component {
             .map(key => {
                 return [...Array(this.props.logs[key])].map(() => {
                     return (<Fragment key={key}>
-                        <div id='LogList'>
-                            <span>{this.props.logs[key].date}</span>
-                            <span>{this.props.logs[key].weight}</span>
-                            <span>{this.props.logs[key].unit}</span>
-                            <span>{this.props.logs[key].count}</span>
+                        <div className='LogList'>
+                            <span className='Log_DateTime'>{this.props.logs[key].date}</span>
+                            <span className='Log_Weight'>{this.props.logs[key].weight}</span>
+                            <span className='Log_Unit'>{this.props.logs[key].unit}</span>
+                            <span className='Log_Count'>{this.props.logs[key].count}</span>
                         </div>
                     </Fragment>)
                 });

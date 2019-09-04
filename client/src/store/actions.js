@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 
 export const FETCH_EXERCISES_BEGIN = "FETCH_EXERCISES_BEGIN";
 export const FETCH_EXERCISES_SUCCESS = "FETCH_EXERCISES_SUCCESS";
@@ -46,7 +47,7 @@ export const expandExercise = (workouts, category, name) => {
         .then(res => {
                 var logs = res.data;
                 logs.map(log => {
-                    log.date = new Date(log.date).toLocaleString();
+                    log.date = moment(log.date).format('MM/DD/YY HH:mm')
                 });
                 dispatch(expandExerciseSuccess(logs));
                 return logs;

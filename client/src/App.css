@@ -1,6 +1,7 @@
 html, body, #root{
   height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 h1, h2, h3{
@@ -155,8 +156,6 @@ input:focus{
 }
 
 #WOHistContainer {
-  /* width: 90vw;
-  margin: 30px 5%; */
   height: 250px;
   display: flow-root;
   background: lightgrey;
@@ -169,12 +168,12 @@ input:focus{
 }
 
 .WOOption {
-  /* width: 90vw; */
   height: 150px;
-  /* margin: 30px 5%;
-  border-style: ridge; */
   display: flex;
-  /* border-bottom-style: ridge; */
+}
+
+#WOOptions {
+  text-align: center;
 }
 
 #WOOptionContainer1 {
@@ -207,8 +206,6 @@ input:focus{
   margin: 0 auto;
   margin-top: 45px;
   margin-bottom: 45px;
-  margin-left: 30%;
-  margin-right: 30%;
   font-size: 24px;
   font-weight: bold;
 }
@@ -269,6 +266,7 @@ input:focus{
 
 .LogList, #LogsTitle{
   display: block;
+  margin-right: 15px;
 }
 
 #LogsTitle span {
@@ -280,26 +278,23 @@ input:focus{
   display: inline-block;
   font-weight: bold;
   padding: 10px 0px 10px 20px;
-  margin: 0px 35px 0px 45px;
 }
 
 #Title_Weight, #Title_Unit, #Title_Count {
   display: inline-block;
   font-weight: bold;
   padding: 10px 0px;
-  margin: 0px 0px 0px 25px;
+  margin: 0px 0px 0px 20px;
 }
 
 #LogContainer {
-  margin: 0 15%;
   max-height: 150px;
   overflow: auto;
 }
 
 .Log_DateTime {
   display: inline-block;
-  width: 190px;
-  text-align: right;
+  width: 120px;
   padding: 3px 0px;
 }
 
@@ -307,7 +302,7 @@ input:focus{
   display: inline-block;
   width: 40px;
   padding: 3px 0px 3px 0px;
-  margin: 0px 0px 0px 35px;
+  margin: 0px 0px 0px 15px;
   text-align: right;
 }
 
@@ -323,7 +318,7 @@ input:focus{
   display: inline-block;
   width: 25px;
   padding: 3px 0px 3px 0px;
-  margin: 0px 0px 0px 45px;
+  margin: 0px 0px 0px 30px;
   text-align: right;
 }
 

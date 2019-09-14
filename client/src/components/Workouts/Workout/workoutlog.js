@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {Collapse} from 'react-collapse';
 import Workouthistory from './workouthistory';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { addExerciseLog } from '../../../store/actions';
 

@@ -76,17 +76,17 @@ router.get('/:category/:name',
             const name = req.params.name;
             switch(req.params.category){
                 case 'Chest': {
-                    const exerciselogs = await ChestWorkoutlog.find({ name: name});
+                    const exerciselogs = await ChestWorkoutlog.find({ name: name}).sort({ date: -1 });
                     res.json(exerciselogs);
                     break;
                 }
                 case 'Leg': {
-                    const exerciselogs = await LegWorkoutlog.find({ name: name});
+                    const exerciselogs = await LegWorkoutlog.find({ name: name}).sort({ date: -1 });
                     res.json(exerciselogs);
                     break;
                 }
                 case 'Back': {
-                    const exerciselogs = await BackWorkoutlog.find({ name: name});
+                    const exerciselogs = await BackWorkoutlog.find({ name: name}).sort({ date: -1 });
                     res.json(exerciselogs);
                     break;
                 }

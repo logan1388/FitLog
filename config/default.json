@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://shiv88:shiv88@fitness-tracker-axoyx.mongodb.net/test?retryWrites=true&w=majority",
+    "mongoURI": "mongodb+srv://shiv:MongoDB@2019@fitlog-fuazl.gcp.mongodb.net/test?retryWrites=true&w=majority",
     "jwtToken": "token"
 }

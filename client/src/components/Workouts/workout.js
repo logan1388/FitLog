@@ -1,57 +1,70 @@
 import React, { Component, Fragment } from 'react';
-import axios from 'axios';
-import Exercises from './exercises';
+import Workoutlog from './Workout/workoutlog';
+import { connect } from 'react-redux';
+import { fetchExercises } from '../../store/actions';
+import { expandExercise } from '../../store/actions';
+import { closeExpandExercise } from '../../store/actions';
 
 class Workout extends Component {
     constructor(props){
         super(props);
-        this.state = {};
-        this.initial = {};
+        this.state = {
+            workouts: [],
+            log: []
+        };
         this.workout = this.props.match.params.id;
-        this.getInitialState();
         this.expandExercise = this.expandExercise.bind(this);
     }
 
-    getInitialState = () => {
-        axios.get('http://localhost:5000/api/exercises/'+this.workout)
-        .then(res =>  {
-            var exercises = res.data;
-            exercises.map(e => {
-                e.open = false;
-            });
-            this.state.workouts = exercises;
-            this.initial.workouts = exercises;
-            this.setState({ workouts: res.data });
-        })
+    componentDidMount(){
+        this.props.dispatch(fetchExercises(this.workout));
     }
 
     expandExercise = (exercise) => {
-        const initialState = this.initial;
-        const updatedExercises = {
-            ...initialState.workouts
-        };
-        const flag = this.state.workouts[exercise]['open'];
+        const updatedExercises = this.props.workouts;
+        const flag = this.props.workouts[exercise]['open'];
+        const category = this.props.workouts[exercise]['category'];
+        const name = this.props.workouts[exercise]['name'];
+        if(!flag){
+            this.props.dispatch(expandExercise(this.props.workouts, category, name));
+            updatedExercises[exercise].log = (<Workoutlog
+                key = {this.props.workouts[exercise]._id}
+                isOpened = {true}
+                logs = {this.props.logs}
+                category = {this.props.workouts[exercise]['category']}>{this.props.workouts[exercise]['name']}
+            </Workoutlog>)
+        }else{
+            this.props.dispatch(closeExpandExercise(this.props.workouts, name));
+            updatedExercises[exercise].log = null;
+        }
         updatedExercises[exercise]['open'] = !flag;
-        initialState.workouts.map(e => {
-            if(e.name != updatedExercises[exercise].name){
-                e.open = false;
-            }
-        })
-        this.setState({ workouts : updatedExercises });
     }
 
     render(){
-        if(!this.state.workouts){
+        if(!this.props.workouts){
             return <div/>
         }
-        return(
-            <Fragment>
-                <Exercises
-                    exercises = {this.state.workouts}
-                    expandExercise = {this.expandExercise}></Exercises>
-            </Fragment>
-        )
+        return Object.keys(this.props.workouts)
+        .map(key => {
+            return [...Array(this.props.workouts[key])].map(() => {
+                return (<Fragment key = {this.props.workouts[key]._id}>
+                <div className = 'ExerciseContainer'
+                    onClick = {() => this.expandExercise(key)}
+                    ><span>{this.props.workouts[key]['name']}</span>
+                </div>
+                <div>{this.props.workouts[key].log}</div>
+                </Fragment>)
+            });      
+        });
     }
 }
 
-export default Workout;
+const mapStateToProps = state => {
+    return {
+        workouts: state.workouts,
+        expandExercise: state.expandExercise,
+        logs: state.logs
+    }
+};
+
+export default connect(mapStateToProps)(Workout);

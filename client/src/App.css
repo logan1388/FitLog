@@ -1,6 +1,7 @@
 html, body, #root{
   height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 h1, h2, h3{
@@ -13,6 +14,7 @@ h1, h2, h3{
   background: url('../src/assets/FITLOG.jpg') no-repeat center center/cover;
   height: 100vh;
   display: flex;
+  width: 100vw;
 }
 
 .title{
@@ -42,7 +44,7 @@ h1, h2, h3{
 }
 
 .card{
-  height: 425px;
+  height: 350px;
   margin: auto;
   width: 400px;
   background-color: rgba(0,0,0,0.5) !important;
@@ -133,10 +135,10 @@ input:focus{
   margin: auto;
 }
 
-.NavTitle{
-  color: white;
-  margin: 0 auto;
-  padding-top: 5px;
+.NavTitle {
+  color: bisque;
+  margin-left: 30px;
+  margin-right: 0px;
 }
 
 .line{
@@ -148,15 +150,20 @@ input:focus{
   margin-top: 2px;
 }
 
+#NavLinks {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+#NavLinks i {
+  color: bisque;
+}
+
 #HamburgerIcon {
-  float: left;
-  width: 30px;
-  height: 30px;
+  display: none;
 }
 
 #WOHistContainer {
-  /* width: 90vw;
-  margin: 30px 5%; */
   height: 250px;
   display: flow-root;
   background: lightgrey;
@@ -169,26 +176,15 @@ input:focus{
 }
 
 .WOOption {
-  /* width: 90vw; */
   height: 150px;
-  /* margin: 30px 5%;
-  border-style: ridge; */
   display: flex;
-  /* border-bottom-style: ridge; */
 }
 
-#WOOptionContainer1 {
-  /* background: url('../src/assets/Chest.jpg') no-repeat center; */
-  background-color: bisque
+#WOOptions {
+  text-align: center;
 }
 
-#WOOptionContainer2 {
-  /* background: url('../src/assets/Leg.jpeg') no-repeat center; */
-  background-color: bisque
-}
-
-#WOOptionContainer3 {
-  /* background: url('../src/assets/shoulder.png') no-repeat center; */
+#WOOptionContainer1, #WOOptionContainer2, #WOOptionContainer3 {
   background-color: bisque
 }
 
@@ -207,14 +203,13 @@ input:focus{
   margin: 0 auto;
   margin-top: 45px;
   margin-bottom: 45px;
-  margin-left: 30%;
-  margin-right: 30%;
   font-size: 24px;
   font-weight: bold;
 }
 
 .ExerciseContainer {
-  margin: 30px;
+  width: 90vw;
+  margin: 30px 5%;
   background-color: lightgrey;
   cursor: pointer;
 }
@@ -226,14 +221,98 @@ input:focus{
   font-weight: bold;
 }
 
-.ExpExerciseContainer {
-  height: 100px;
-  background-color: white;
-  border-style: unset;
+.EC {
+  width: 90vw;
+  margin: 0 5%;
 }
 
-#NavLinks {
-  display: none;
+.ExpExerciseContainer {
+  height: auto;
+  background-color: white;
+  border-style: unset;
+  text-align: center;
+  padding: 0px 0px 15px 0px;
+  cursor: default;
+}
+
+.DetailsLogContainer {
+  display: inline-block;
+  margin: 15px 15px 15px 0;
+}
+
+.DetailsLogContainer span {
+  padding: 0 10px 0 0;
+  display: inline-block;
+}
+
+.DetailsLogContainer input {
+  width: 60px;
+}
+
+.DetailsLogContainer select {
+  margin-left: 10px;
+}
+
+#SaveLogBtn {
+  display: inline-flex;
+}
+
+.LogList, #LogsTitle{
+  display: block;
+  margin-right: 15px;
+}
+
+#LogsTitle span {
+  display: inline-block;
+  font-weight: bold;
+}
+
+#Title_DateTime {
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px 0px 10px 20px;
+}
+
+#Title_Weight, #Title_Unit, #Title_Count {
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px 0px;
+  margin: 0px 0px 0px 20px;
+}
+
+#LogContainer {
+  max-height: 150px;
+  overflow: auto;
+}
+
+.Log_DateTime {
+  display: inline-block;
+  width: 120px;
+  padding: 3px 0px;
+}
+
+.Log_Weight {
+  display: inline-block;
+  width: 40px;
+  padding: 3px 0px 3px 0px;
+  margin: 0px 0px 0px 15px;
+  text-align: right;
+}
+
+.Log_Unit {
+  display: inline-block;
+  width: 25px;
+  padding: 3px 0px 3px 0px;
+  margin: 0px 0px 0px 35px;
+  text-align: right;
+}
+
+.Log_Count {
+  display: inline-block;
+  width: 25px;
+  padding: 3px 0px 3px 0px;
+  margin: 0px 0px 0px 30px;
+  text-align: right;
 }
 
 /* Media queries */
@@ -254,32 +333,9 @@ input:focus{
   .col-md-4{
     padding: 0;
   }
-
-  #HamburgerIcon {
-    display: none;
-  }
-
-  .NavTitle {
-    margin-left: 30px;
-    margin-right: 0px;
-  }
-
-  #NavLinks {
-    margin: 0 auto;
-    margin-left: 30px;
-    display: inline-block;
-  }
-
-  #NavLinks span{
-    font-size: 20px;
-  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 949px) {
-  #WOOptions {
-    margin-left: 5%;
-  }
-
   #WOHistContainer span{
     margin-left: 5%;
     padding-left: 15px;
@@ -287,10 +343,6 @@ input:focus{
 }
 
 @media only screen and (min-width: 950px) {
-  #WOOptions {
-    margin-left: 10%;
-  }
-
   #WOHistContainer span{
     margin-left: 10%;
     padding-left: 15px;

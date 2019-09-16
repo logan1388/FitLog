@@ -6,12 +6,15 @@ import './App.css';
 import register from '../src/components/auth/register';
 import dashboard from '../src/components/dashboard/dashboard';
 import workout from './components/Workouts/workout';
+import { connect } from 'react-redux';
+
 
 class App extends Component{
+
   render(){
-    return (
-      <Router>
-      <Header></Header>
+      return(
+        <Router>
+        <Header isAuthenticated = {this.props.isAuthenticated}></Header>
         <Route exact path='/' component={Landing} />
         <Route path='/Register' component={register} />
         <Route path='/Dashboard' component={dashboard}/>
@@ -19,9 +22,16 @@ class App extends Component{
           path = '/Workout/:id' 
           component = {workout}
           />
-      </Router>
-    )
+        </Router>
+      )
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+      user: state.user,
+      isAuthenticated: state.isAuthenticated
+  }
+};
+
+export default connect(mapStateToProps)(App);

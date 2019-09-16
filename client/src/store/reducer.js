@@ -8,14 +8,20 @@ import {
     CLOSE_EXPANDEXERCISE_SUCCESS,
     ADD_EXERCISELOG_BEGIN,
     ADD_EXERCISELOG_SUCCESS,
-    ADD_EXERCISELOG_FAILURE
+    ADD_EXERCISELOG_FAILURE,
+    LOGIN_BEGIN,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT_SUCCESS
   } from "../store/actions";
   
   const initialState = {
+    user: {},
     workouts: [],
     logs: [],
     loading: false,
-    error: null
+    error: null,
+    isAuthenticated: false
   };
   
   export default function workoutReducer(
@@ -84,7 +90,6 @@ import {
             };
           
         case ADD_EXERCISELOG_SUCCESS:
-            console.log(action.payload.logs);
             return {
                 ...state,
                 loading: false,
@@ -97,6 +102,37 @@ import {
                 loading: false,
                 error: action.payload.error,
                 logs: []
+            };
+
+        case LOGIN_BEGIN:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+          
+        case LOGIN_SUCCESS:
+            console.log(action.payload.user);
+            return {
+                ...state,
+                loading: false,
+                user: action.payload.user,
+                isAuthenticated: true
+            };
+          
+        case LOGIN_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+                logs: []
+            };
+
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                user: {},
+                isAuthenticated: false
             };
     
       default:

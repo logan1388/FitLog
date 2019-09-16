@@ -14,7 +14,6 @@ class Landing extends Component {
     }
     
     demo = () => {
-        console.log("Demo!");
         this.props.history.push('/Dashboard');
     }
 
@@ -75,9 +74,9 @@ class Landing extends Component {
                                 <Link id='ForgotPwd' to='/Register'>Forgot your password?</Link>
                             </div>
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <input id='DemoBtn' type="submit" value="Demo" className="btn" onClick={this.demo}/>
-                        </div>
+                        </div> */}
                     </div>          
                     </div>             
                 </div>

@@ -44,7 +44,7 @@ h1, h2, h3{
 }
 
 .card{
-  height: 425px;
+  height: 350px;
   margin: auto;
   width: 400px;
   background-color: rgba(0,0,0,0.5) !important;

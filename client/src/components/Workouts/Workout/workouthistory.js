@@ -2,9 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 class workouthistory extends Component {
-    constructor(props){
-        super(props);
-    }
+    
     render(){
         return Object.keys(this.props.logs)
             .map(key => {

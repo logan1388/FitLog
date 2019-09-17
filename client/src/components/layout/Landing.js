@@ -24,8 +24,12 @@ class Landing extends Component {
         this.setState({password: e.target.value});
     }
 
-    login = () => {
+    handleSubmit = (e) => {
+        e.preventDefault();
         //console.log(formData);
+        if(!(this.state.email && this.state.password)){
+            return;
+        }
         let u = localStorage.getItem('user');
         if(u){
             this.props.history.push('/Dashboard');
@@ -45,26 +49,26 @@ class Landing extends Component {
                             <h3>Sign In</h3>
                         </div>
                         <div className="card-body">
-                            <div>
+                            <form onSubmit={this.handleSubmit}>
                                 <div className="input-group form-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text"><i className="fa fa-user"></i></span>
                                     </div>
-                                    <input type="text" className="form-control" value={this.state.email} onChange={this.emailChange} placeholder="email" />
+                                    <input required type="text" className="form-control" value={this.state.email} onChange={this.emailChange} placeholder="email" />
                                 </div>
                                 <div className="input-group form-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text"><i className="fa fa-key"></i></span>
                                     </div>
-                                    <input type="password" className="form-control" value={this.state.password} onChange={this.passwordChange} placeholder="password" />
+                                    <input required type="password" className="form-control" value={this.state.password} onChange={this.passwordChange} placeholder="password" />
                                 </div>
                                 <div className="row align-items-center remember">
                                     <input type="checkbox" />Remember Me
                               </div>
                                 <div className="form-group">
-                                    <input id='LoginBtn' type="submit" value="Login" onClick={this.login} className="btn float-right login_btn" />
+                                    <input id='LoginBtn' type="submit" value="Login" className="btn float-right login_btn" />
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <div className="card-footer">
                             <div className="d-flex justify-content-center links">

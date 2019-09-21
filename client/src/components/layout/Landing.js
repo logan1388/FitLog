@@ -27,6 +27,7 @@ class Landing extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         //console.log(formData);
+        localStorage.removeItem('user');
         if(!(this.state.email && this.state.password)){
             return;
         }

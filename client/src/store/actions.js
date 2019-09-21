@@ -80,9 +80,26 @@ export const addExerciseLog = (exerciseLog, logToBeUpdated, workouts) => {
         axios.post('http://localhost:5000/api/workoutlog/',exerciseLog)
         .then(res => {
             dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name));
+            dispatch(addTodayWorkout(exerciseLog.userId, exerciseLog.category, exerciseLog.date));
             return logToBeUpdated;
         })
         .catch(error => dispatch(addExerciseLogFailure(error)));
+    }
+}
+
+export const addTodayWorkout = (userId, category, date) => {
+    return dispatch => {
+        let workout = {
+            userId: userId,
+            category: category,
+            date: date
+        }
+        console.log(workout);
+        axios.post('http://localhost:5000/api/workout/',workout)
+        .then(res => {
+            console.log(res);
+        })
+        .catch(error => console.log(error));
     }
 }
 

@@ -69,7 +69,7 @@ class Landing extends Component {
                                 <div className="form-group">
                                     <input id='LoginBtn' type="submit" value="Login" onClick={this.login} className="btn float-right login_btn" />
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <div className="card-footer">
                             <div className="d-flex justify-content-center links">

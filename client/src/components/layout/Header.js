@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../store/actions';
 
 class Header extends Component {
-    
+
     logOut = () => {
         this.props.dispatch(logout());
     }

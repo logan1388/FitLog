@@ -67,9 +67,9 @@ class Landing extends Component {
                                     <input type="checkbox" />Remember Me
                               </div>
                                 <div className="form-group">
-                                    <input id='LoginBtn' type="submit" value="Login" className="btn float-right login_btn" />
+                                    <input id='LoginBtn' type="submit" value="Login" onClick={this.login} className="btn float-right login_btn" />
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         <div className="card-footer">
                             <div className="d-flex justify-content-center links">

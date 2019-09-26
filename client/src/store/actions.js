@@ -23,6 +23,8 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
+export const FETCH_WORKOUTHISTORY = "FETCH_WORKOUTHISTORY";
+
 export const fetchExercises = (workout) => {
     return dispatch => {
         dispatch(fetchExercisesBegin());
@@ -128,6 +130,21 @@ export const logout = () => {
     }
 }
 
+export const workoutHistory = (userId) => {
+    return dispatch => {
+        let param = {
+            userId: userId
+        }
+        axios.post('http://localhost:5000/api/workout/workoutHistory', param)
+            .then(res => {
+                let workoutHist = res.data;
+                console.log(workoutHist);
+                dispatch(workoutHistorySuccess(workoutHist));
+            })
+            .catch(error => console.log(error));
+    }
+}
+
 export const fetchExercisesBegin = () => ({
     type: FETCH_EXERCISES_BEGIN
 });
@@ -191,4 +208,9 @@ export const loginFailure = error => ({
 
 export const logoutSuccess = () => ({
     type: LOGOUT_SUCCESS
-})
+});
+
+export const workoutHistorySuccess = workoutHist => ({
+    type: FETCH_WORKOUTHISTORY,
+    payload: { workoutHist }
+});

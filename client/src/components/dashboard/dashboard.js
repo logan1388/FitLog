@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { workoutHistory } from '../../store/actions';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
 class Dashboard extends Component {
     constructor(props){
@@ -8,12 +11,25 @@ class Dashboard extends Component {
     selectWorkOut = (workout) => {
         this.props.history.push('/Workout/'+workout);
     }
-    render(){
+
+    componentDidMount(){
+        let id = JSON.parse(localStorage.getItem('user')).data.user.id;
+        this.props.dispatch(workoutHistory(id));
+    }
+
+    render(){     
+        let category = this.props.workoutHistory.length > 0 ? this.props.workoutHistory[0].category : null;
+        let date = this.props.workoutHistory.length > 0 ? this.props.workoutHistory[0].date : null;
+        date = moment(date).format('MM/DD/YY')
+        let history = [];
+        if(this.props.workoutHistory.length > 0){
+            history = this.props.workoutHistory.map(wh => wh.category);
+        }
         return (
             <div>
                 <div id='WOHistContainer'>
                     <div>
-                        <span>Previous Workout: </span>
+                        <span>Previous Workout:  {category} - {date}</span>
                     </div>
                     <div>
                         <span>Last 5 Workouts</span>
@@ -44,4 +60,12 @@ class Dashboard extends Component {
     }  
 }
 
-export default Dashboard;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.isAuthenticated,
+        user: state.user,
+        workoutHistory: state.workoutHistory
+    }
+}
+
+export default connect(mapStateToProps)(Dashboard);

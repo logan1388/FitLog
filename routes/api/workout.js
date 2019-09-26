@@ -47,4 +47,18 @@ async (req, res) => {
     }
 });
 
+router.post('/workoutHistory',
+    async(req, res) => {
+        const userId = req.body.userId;
+        try {
+            let start = moment().startOf('day');
+            const workoutHistory = await Workout.find({ userId, date: {$lt: start} }).sort({ date: -1 });
+            res.json(workoutHistory);
+        }
+        catch(err){
+
+        }
+    }
+)
+
 module.exports = router;

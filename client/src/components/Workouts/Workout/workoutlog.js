@@ -57,7 +57,9 @@ class Workoutlog extends Component {
     addLog = () => {
         let timestamp = this.getTimestamp();
         this.getInitialState();
+        let id = JSON.parse(localStorage.getItem('user')).data.user.id;
         this.exerciseLog = {
+            "userId": this.props.user.id ? this.props.user.id : id,
             "category": this.props.category,
             "name": this.props.children,
             "date": timestamp,
@@ -113,6 +115,7 @@ class Workoutlog extends Component {
 
 const mapStateToProps = state => {
     return {
+        user: state.user,
         workouts: state.workouts,
         logs: state.logs
     }

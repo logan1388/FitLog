@@ -23,6 +23,8 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
+export const FETCH_WORKOUTHISTORY = "FETCH_WORKOUTHISTORY";
+
 export const fetchExercises = (workout) => {
     return dispatch => {
         dispatch(fetchExercisesBegin());
@@ -80,9 +82,26 @@ export const addExerciseLog = (exerciseLog, logToBeUpdated, workouts) => {
         axios.post('http://localhost:5000/api/workoutlog/',exerciseLog)
         .then(res => {
             dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name));
+            dispatch(addTodayWorkout(exerciseLog.userId, exerciseLog.category, exerciseLog.date));
             return logToBeUpdated;
         })
         .catch(error => dispatch(addExerciseLogFailure(error)));
+    }
+}
+
+export const addTodayWorkout = (userId, category, date) => {
+    return dispatch => {
+        let workout = {
+            userId: userId,
+            category: category,
+            date: date
+        }
+        console.log(workout);
+        axios.post('http://localhost:5000/api/workout/',workout)
+        .then(res => {
+            console.log(res);
+        })
+        .catch(error => console.log(error));
     }
 }
 
@@ -108,6 +127,21 @@ export const logout = () => {
     return dispatch => {
         localStorage.removeItem('user');
         dispatch(logoutSuccess());
+    }
+}
+
+export const workoutHistory = (userId) => {
+    return dispatch => {
+        let param = {
+            userId: userId
+        }
+        axios.post('http://localhost:5000/api/workout/workoutHistory', param)
+            .then(res => {
+                let workoutHist = res.data;
+                console.log(workoutHist);
+                dispatch(workoutHistorySuccess(workoutHist));
+            })
+            .catch(error => console.log(error));
     }
 }
 
@@ -174,4 +208,9 @@ export const loginFailure = error => ({
 
 export const logoutSuccess = () => ({
     type: LOGOUT_SUCCESS
-})
+});
+
+export const workoutHistorySuccess = workoutHist => ({
+    type: FETCH_WORKOUTHISTORY,
+    payload: { workoutHist }
+});

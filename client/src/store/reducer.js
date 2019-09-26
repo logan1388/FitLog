@@ -12,13 +12,15 @@ import {
     LOGIN_BEGIN,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
-    LOGOUT_SUCCESS
+    LOGOUT_SUCCESS,
+    FETCH_WORKOUTHISTORY
   } from "../store/actions";
   
   const initialState = {
     user: {},
     workouts: [],
     logs: [],
+    workoutHistory: [],
     loading: false,
     error: null,
     isAuthenticated: false
@@ -102,6 +104,13 @@ import {
                 loading: false,
                 error: action.payload.error,
                 logs: []
+            };
+
+        case FETCH_WORKOUTHISTORY:
+            return {
+                ...state,
+                loading: false,
+                workoutHistory: action.payload.workoutHist
             };
 
         case LOGIN_BEGIN:

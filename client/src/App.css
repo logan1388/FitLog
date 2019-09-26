@@ -29,11 +29,11 @@ h1, h2, h3{
   color: black;
 }
 
-.NavTitle a{
+.NavTitle a, .NavTitle-center a{
   color: bisque;
 }
 
-.title :hover, .NavTitle :hover{
+.title :hover, .NavTitle :hover, .NavTitle-center :hover{
   color: white;
   text-decoration: none;
 }
@@ -139,6 +139,11 @@ input:focus{
   color: bisque;
   margin-left: 30px;
   margin-right: 0px;
+}
+
+.NavTitle-center {
+  margin: 0 auto;
+  color: bisque;
 }
 
 .line{

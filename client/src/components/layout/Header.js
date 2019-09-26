@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { logout } from '../../store/actions';
 
 class Header extends Component {
-    constructor(props){
-        super(props)
-    }
+
     logOut = () => {
         this.props.dispatch(logout());
     }
     render(){
+        let user = localStorage.getItem('user');
+        //console.log(user);
         return (
             <Fragment>
             <nav className="navbar navbar-dark bg-dark">
@@ -19,10 +19,11 @@ class Header extends Component {
                     <span className='line'></span>
                     <span className='line'></span>
                 </div>
-                <span className='NavTitle h2'><Link to='/Dashboard'>FITLOG</Link></span>
-                {this.props.isAuthenticated ? <div id='NavLinks'>
+                {this.props.user.id || user ? 
+                <Fragment><span className='NavTitle h2'><Link to='/Dashboard'>FITLOG</Link></span>
+                <div id='NavLinks'>
                     <span onClick={this.logOut}><Link to='/'><i className="fa fa-user fa-2x"></i></Link></span>
-                </div> : null}
+                </div> </Fragment> : <Fragment><span className='NavTitle-center h2'><Link to='/'>FITLOG</Link></span></Fragment>}
             </nav>
         </Fragment>  
         )
@@ -31,7 +32,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.isAuthenticated
+        isAuthenticated: state.isAuthenticated,
+        user: state.user
     }
 }
 

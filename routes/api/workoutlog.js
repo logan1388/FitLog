@@ -20,12 +20,13 @@ router.post('/',
         if(!errors.isEmpty()){
             return res.status(400).json({ errors: errors.array()});
         }
-        const { name, date, weight, unit, count } = req.body;
+        const { userId, name, date, weight, unit, count } = req.body;
         try{
             let workoutlog = {};
             switch(req.body.category){
                 case 'Chest': {
                     workoutlog = new ChestWorkoutlog({
+                        userId,
                         name,
                         date,
                         weight,
@@ -36,6 +37,7 @@ router.post('/',
                 }
                 case 'Leg': {
                     workoutlog = new LegWorkoutlog({
+                        userId,
                         name,
                         date,
                         weight,
@@ -46,6 +48,7 @@ router.post('/',
                 }
                 case 'Back': {
                     workoutlog = new BackWorkoutlog({
+                        userId,
                         name,
                         date,
                         weight,

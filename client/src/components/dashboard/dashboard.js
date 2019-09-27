@@ -20,19 +20,23 @@ class Dashboard extends Component {
     render(){     
         let category = this.props.workoutHistory.length > 0 ? this.props.workoutHistory[0].category : null;
         let date = this.props.workoutHistory.length > 0 ? this.props.workoutHistory[0].date : null;
-        date = moment(date).format('MM/DD/YY')
+        date = moment(date).format('MM/DD/YY');
         let history = [];
         if(this.props.workoutHistory.length > 0){
-            history = this.props.workoutHistory.map(wh => wh.category);
+            history = this.props.workoutHistory.map(wh => 
+            <div key={wh._id} className="PreviousWorkouts">{wh.category} - {moment(wh.date).format('MM/DD/YY')}</div>
+            );
         }
         return (
             <div>
                 <div id='WOHistContainer'>
-                    <div>
-                        <span>Previous Workout:  {category} - {date}</span>
+                    <div id="PreviousWOContainer">
+                        <div id="PreviousWorkoutLabel">Previous Workout:</div>
+                        <div id="PreviousWorkout">{category} - {date}</div>
                     </div>
                     <div>
-                        <span>Last 5 Workouts</span>
+                        <div id="PreviousWorkoutsLabel">Last 5 Workouts:</div>
+                        {history}
                     </div>
                 </div>
                 <div className='row' id="WOOptions">

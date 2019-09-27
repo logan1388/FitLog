@@ -175,9 +175,9 @@ input:focus{
 }
 
 #WOHistContainer span{
-  margin: 30px 50px;
-  display: block;
-  font-weight: bold;
+  margin: 15px 50px;
+  display: inline-block;
+  font-weight: normal;
 }
 
 .WOOption {
@@ -320,6 +320,34 @@ input:focus{
   text-align: right;
 }
 
+#PreviousWOContainer {
+  width: 100vw;
+  display: inline-block;
+}
+
+#PreviousWorkoutLabel {
+  float: left;
+  width: 30%;
+  margin: 15px 0px 0px 10%;
+  font-weight: bold;
+  text-align: end;
+}
+
+#PreviousWorkoutsLabel {
+  float: left;
+  width: 30%;
+  margin: 15px 0px 15px 10%;
+  font-weight: bold;
+  text-align: end;
+  height: 175px;
+}
+
+#PreviousWorkout, .PreviousWorkouts {
+  width: 55%;
+  float: left;
+  margin: 15px 0px 0px 15px;
+}
+
 /* Media queries */
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -345,11 +373,23 @@ input:focus{
     margin-left: 5%;
     padding-left: 15px;
   }
+
+  #PreviousWorkoutLabel, #PreviousWorkoutsLabel {
+    width: 20%;
+  }
 }
 
 @media only screen and (min-width: 950px) {
   #WOHistContainer span{
     margin-left: 10%;
     padding-left: 15px;
+  }
+
+  #PreviousWorkoutLabel, #PreviousWorkoutsLabel {
+    width: 15%;
+  }
+
+  #PreviousWorkout, .PreviousWorkouts {
+    width: 50%;
   }
 }

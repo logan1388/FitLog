@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator/check');
 const ChestWorkoutlog = require('../../models/Workoutlog').ChestWorkoutlog;
 const LegWorkoutlog = require('../../models/Workoutlog').LegWorkoutlog;
 const BackWorkoutlog = require('../../models/Workoutlog').BackWorkoutlog;
+const TricepsWorkoutlog = require('../../models/Workoutlog').TricepsWorkoutlog;
 
 //@route POST api/workoutlog
 //@desc Insert workoutlog for a particular exercise
@@ -57,6 +58,17 @@ router.post('/',
                     });
                     break;
                 }
+                case 'Triceps': {
+                    workoutlog = new TricepsWorkoutlog({
+                        userId,
+                        name,
+                        date,
+                        weight,
+                        unit,
+                        count
+                    });
+                    break;
+                }
                 default : {
                     res.send(req.body.category+' not found!');
                 }
@@ -90,6 +102,11 @@ router.get('/:category/:name',
                 }
                 case 'Back': {
                     const exerciselogs = await BackWorkoutlog.find({ name: name}).sort({ date: -1 });
+                    res.json(exerciselogs);
+                    break;
+                }
+                case 'Triceps': {
+                    const exerciselogs = await TricepsWorkoutlog.find({ name: name}).sort({ date: -1 });
                     res.json(exerciselogs);
                     break;
                 }

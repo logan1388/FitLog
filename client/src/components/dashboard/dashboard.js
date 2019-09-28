@@ -23,7 +23,7 @@ class Dashboard extends Component {
         date = moment(date).format('MM/DD/YY');
         let history = [];
         if(this.props.workoutHistory.length > 0){
-            history = this.props.workoutHistory.map(wh => 
+            history = this.props.workoutHistory.slice(0, 5).map(wh => 
             <div key={wh._id} className="PreviousWorkouts">{wh.category} - {moment(wh.date).format('MM/DD/YY')}</div>
             );
         }
@@ -34,7 +34,7 @@ class Dashboard extends Component {
                         <div id="PreviousWorkoutLabel">Previous Workout:</div>
                         <div id="PreviousWorkout">{category} - {date}</div>
                     </div>
-                    <div>
+                    <div id="PreviousWOsContainer">
                         <div id="PreviousWorkoutsLabel">Last 5 Workouts:</div>
                         {history}
                     </div>

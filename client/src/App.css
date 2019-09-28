@@ -323,29 +323,36 @@ input:focus{
 #PreviousWOContainer {
   width: 100vw;
   display: inline-block;
+  margin: 0px 5%;
+}
+
+#PreviousWOsContainer {
+  float: left;
+  border-style: solid;
+  margin: 10px 5%;
 }
 
 #PreviousWorkoutLabel {
   float: left;
-  width: 30%;
-  margin: 15px 0px 0px 10%;
+  width: 40%;
+  margin: 10px 0px 0px 5px;
   font-weight: bold;
   text-align: end;
 }
 
 #PreviousWorkoutsLabel {
   float: left;
-  width: 30%;
-  margin: 15px 0px 15px 10%;
+  width: 40%;
+  margin: 10px 0px 15px 20px;
   font-weight: bold;
   text-align: end;
-  height: 175px;
+  height: 155px;
 }
 
 #PreviousWorkout, .PreviousWorkouts {
-  width: 55%;
+  width: 45%;
   float: left;
-  margin: 15px 0px 0px 15px;
+  margin: 10px 0px 0px 15px;
 }
 
 /* Media queries */
@@ -354,6 +361,18 @@ input:focus{
   #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn, #BicepsBtn, #TricepsBtn {
     margin-left: 15%;
     margin-right: 15%;
+  }
+
+  #PreviousWorkoutLabel {
+    width: 30%;
+  }
+  
+  #PreviousWorkoutsLabel {
+    width: 30%;
+  }
+  
+  #PreviousWorkout, .PreviousWorkouts {
+    width: 55%;
   }
 }
 
@@ -374,8 +393,25 @@ input:focus{
     padding-left: 15px;
   }
 
-  #PreviousWorkoutLabel, #PreviousWorkoutsLabel {
-    width: 20%;
+  #PreviousWOContainer {
+    width: 55%;
+    margin-left: 6%;
+  }
+
+  #PreviousWOsContainer {
+    width: 55%;
+    margin: 0 0 0 6%;
+  }
+
+  #PreviousWorkoutLabel {
+    width: 35%;
+    margin-left: 0px;
+  }
+
+  #PreviousWorkoutsLabel {
+    width: 35%;
+    height: 165px;
+    margin-left: 0px;
   }
 }
 
@@ -385,11 +421,27 @@ input:focus{
     padding-left: 15px;
   }
 
-  #PreviousWorkoutLabel, #PreviousWorkoutsLabel {
-    width: 15%;
+  #PreviousWOContainer {
+    width: 50%;
+    margin-left: 5%;
+  }
+
+  #PreviousWOsContainer {
+    width: 50%;
+    margin: 0 0 0 5%;
+  }
+
+  #PreviousWorkoutLabel {
+    margin-left: 15px;
+  }
+
+  #PreviousWorkoutsLabel {
+    margin-left: 15px;
+    height: 165px;
   }
 
   #PreviousWorkout, .PreviousWorkouts {
     width: 50%;
+    margin-top: 10px;
   }
 }

@@ -29,9 +29,11 @@ const workoutlogSchema = new mongoose.Schema({
 var ChestWorkoutlog = mongoose.model('chestworkoutlogs', workoutlogSchema);
 var LegWorkoutlog = mongoose.model('legworkoutlogs', workoutlogSchema);
 var BackWorkoutlog = mongoose.model('backworkoutlogs', workoutlogSchema);
+var TricepsWorkoutlog = mongoose.model('tricepsworkoutlogs', workoutlogSchema);
 
 module.exports = {
     ChestWorkoutlog: ChestWorkoutlog,
     LegWorkoutlog: LegWorkoutlog,
-    BackWorkoutlog: BackWorkoutlog
+    BackWorkoutlog: BackWorkoutlog,
+    TricepsWorkoutlog: TricepsWorkoutlog
 }

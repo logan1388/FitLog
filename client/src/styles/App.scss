@@ -8,7 +8,7 @@ html, body, #root{
 
 h1, h2, h3{
   text-align: center;
-  color: black
+  color: $titleColor;
 }
 
 .landing-container{
@@ -355,6 +355,21 @@ input:focus{
   width: 45%;
   float: left;
   margin: 10px 0px 0px 15px;
+}
+
+#RegisterCardContainer {
+  height: 410px;
+}
+
+#RegisterFieldsContainer {
+  padding: 0 30px;
+}
+
+#WelcomeNoteContainer {
+  text-align: center;
+  span {
+    font-weight: bold;
+  }
 }
 
 /* Media queries */

@@ -85,28 +85,28 @@ router.post('/',
 
 //@route GET api/workoutlog/:category/:name
 //@desc Get logs for an exercise
-router.get('/:category/:name',
+router.post('/log',
     async(req, res) => {
         try{
-            const name = req.params.name;
-            switch(req.params.category){
+            const { userId, category, name } = req.body;
+            switch(category){
                 case 'Chest': {
-                    const exerciselogs = await ChestWorkoutlog.find({ name: name}).sort({ date: -1 });
+                    const exerciselogs = await ChestWorkoutlog.find({ userId: userId, name: name}).sort({ date: -1 });
                     res.json(exerciselogs);
                     break;
                 }
                 case 'Leg': {
-                    const exerciselogs = await LegWorkoutlog.find({ name: name}).sort({ date: -1 });
+                    const exerciselogs = await LegWorkoutlog.find({ userId: userId, name: name}).sort({ date: -1 });
                     res.json(exerciselogs);
                     break;
                 }
                 case 'Back': {
-                    const exerciselogs = await BackWorkoutlog.find({ name: name}).sort({ date: -1 });
+                    const exerciselogs = await BackWorkoutlog.find({ userId: userId, name: name}).sort({ date: -1 });
                     res.json(exerciselogs);
                     break;
                 }
                 case 'Triceps': {
-                    const exerciselogs = await TricepsWorkoutlog.find({ name: name}).sort({ date: -1 });
+                    const exerciselogs = await TricepsWorkoutlog.find({ userId: userId, name: name}).sort({ date: -1 });
                     res.json(exerciselogs);
                     break;
                 }

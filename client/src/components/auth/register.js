@@ -1,34 +1,77 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { register } from '../../store/actions';
+import { connect } from 'react-redux';
 
-const Register = () => {
-    return (
-        <div className='landing-container'>
-            <div className="card">
-                <div className="card-header">
-                    <h3>Register</h3>
-                </div>
-                <div className="card-body">
-                    <form>
-                        <div className="input-group form-group">
-                            <input type="text" className="form-control" placeholder="Full Name" />
-                        </div>
-                        <div className="input-group form-group">
-                            <input type="text" className="form-control" placeholder="User Name" />
-                        </div>
-                        <div className="input-group form-group">
-                            <input type="text" className="form-control" placeholder="Email" />
-                        </div>
-                        <div className="input-group form-group">
-                            <input type="password" className="form-control" placeholder="Password" />
-                        </div>
-                        <div className="form-group">
-                            <input id='RegisterBtn' type="submit" value="Register" className="btn float-right register_btn" />
-                        </div>
-                    </form>
+class Register extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            username: '',
+            email: '',
+            password: ''
+        }
+    }
+
+    nameChange = (e) => {
+        this.setState({name: e.target.value});
+    }
+    usernameChange = (e) => {
+        this.setState({username: e.target.value});
+    }
+    emailChange = (e) => {
+        this.setState({email: e.target.value});
+    }
+    passwordChange = (e) => {
+        this.setState({password: e.target.value});
+    }
+    confirmPasswordChange = (e) => {
+        this.setState({confirmPassword: e.target.value});
+    }
+
+    register = (e) => {
+        e.preventDefault();
+        this.props.dispatch(register(this.state.name, this.state.username, this.state.email, this.state.password));
+    }
+    render(){
+        return (
+            <div className='landing-container'>
+                <div id="RegisterCardContainer" className="card">
+                    <div className="card-header">
+                        <h3>Sign Up</h3>
+                    </div>
+                    <div id="RegisterFieldsContainer" className="card-body">
+                        <form onSubmit={this.register}>
+                            <div className="input-group form-group">
+                                <input required type="text" className="form-control" value={this.state.name} onChange={this.nameChange} placeholder="Full Name" />
+                            </div>
+                            <div className="input-group form-group">
+                                <input required type="text" className="form-control" value={this.state.username} onChange={this.usernameChange} placeholder="User Name" />
+                            </div>
+                            <div className="input-group form-group">
+                                <input required type="text" className="form-control" value={this.state.email} onChange={this.emailChange} placeholder="Email" />
+                            </div>
+                            <div className="input-group form-group">
+                                <input required type="password" className="form-control" value={this.state.password} onChange={this.passwordChange} placeholder="Password" />
+                            </div>
+                            <div className="input-group form-group">
+                                <input required type="password" className="form-control" value={this.state.confirmPassword} onChange={this.confirmPasswordChange} placeholder="Confirm Password" />
+                            </div>
+                            <div className="form-group">
+                                <input required id='RegisterBtn' type="submit" value="Register" className="btn float-right register_btn" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+        isAuthenticated: state.isAuthenticated
+    }
+};
 
-export default Register;
+export default connect(mapStateToProps)(Register);

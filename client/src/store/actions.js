@@ -42,16 +42,21 @@ export const fetchExercises = (workout) => {
     };
 }
 
-export const expandExercise = (workouts, category, name) => {
+export const expandExercise = (workouts, category, name, userId) => {
     return dispatch => {
         workouts.map(e => {
             if(e.name !== name && e.open === true){
                 e.open = false;
                 e.log = null;
             }
-        })
+        });
+        let exercise = {
+            userId: userId,
+            category: category,
+            name: name
+        };
         dispatch(expandExerciseBegin());
-        axios.get('http://localhost:5000/api/workoutlog/'+category+'/'+name)
+        axios.post('http://localhost:5000/api/workoutlog/log',exercise)
         .then(res => {
                 var logs = res.data;
                 logs.map(log => {
@@ -81,7 +86,7 @@ export const addExerciseLog = (exerciseLog, logToBeUpdated, workouts) => {
         logToBeUpdated.push(exerciseLog);
         axios.post('http://localhost:5000/api/workoutlog/',exerciseLog)
         .then(res => {
-            dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name));
+            dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name, exerciseLog.userId));
             dispatch(addTodayWorkout(exerciseLog.userId, exerciseLog.category, exerciseLog.date));
             return logToBeUpdated;
         })
@@ -118,6 +123,22 @@ export const login = (email, password, history) => {
             dispatch(loginSuccess(res.data.user));
             history.push('/Dashboard');
             return res.data.user;
+        })
+        .catch(error => console.log(error));
+    }
+}
+
+export const register = (name, username, email, password, history) => {    
+    return dispatch => {
+        let registerRequest = {
+            "name": name,
+            "username": username,
+            "email": email,
+            "password": password
+        }
+        axios.post('http://localhost:5000/api/users/',registerRequest)
+        .then(res => {
+            console.log(res.data);
         })
         .catch(error => console.log(error));
     }

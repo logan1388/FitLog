@@ -26,7 +26,9 @@ class Workout extends Component {
         const category = this.props.workouts[exercise]['category'];
         const name = this.props.workouts[exercise]['name'];
         if(!flag){
-            this.props.dispatch(expandExercise(this.props.workouts, category, name));
+            let id = JSON.parse(localStorage.getItem('user')).data.user.id;
+            let userId = this.props.user.id ? this.props.user.id : id;
+            this.props.dispatch(expandExercise(this.props.workouts, category, name, userId));
             updatedExercises[exercise].log = (<Workoutlog
                 key = {this.props.workouts[exercise]._id}
                 isOpened = {true}
@@ -61,6 +63,7 @@ class Workout extends Component {
 
 const mapStateToProps = state => {
     return {
+        user: state.user,
         workouts: state.workouts,
         expandExercise: state.expandExercise,
         logs: state.logs

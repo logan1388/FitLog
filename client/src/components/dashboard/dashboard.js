@@ -22,14 +22,13 @@ class Dashboard extends Component {
         let date = this.props.workoutHistory.length > 0 ? this.props.workoutHistory[0].date : null;
         date = moment(date).format('MM/DD/YY');
         let history = [];
+        let dashboard = '';
         if(this.props.workoutHistory.length > 0){
             history = this.props.workoutHistory.slice(0, 5).map(wh => 
             <div key={wh._id} className="PreviousWorkouts">{wh.category} - {moment(wh.date).format('MM/DD/YY')}</div>
             );
-        }
-        return (
-            <div>
-                <div id='WOHistContainer'>
+            dashboard = (
+                <div>
                     <div id="PreviousWOContainer">
                         <div id="PreviousWorkoutLabel">Previous Workout:</div>
                         <div id="PreviousWorkout">{category} - {date}</div>
@@ -38,6 +37,21 @@ class Dashboard extends Component {
                         <div id="PreviousWorkoutsLabel">Last 5 Workouts:</div>
                         {history}
                     </div>
+                </div>
+            )
+        }
+        else{
+            dashboard = (
+                <div id="WelcomeNoteContainer">
+                    <p><span>Welcome to FITLOG!</span></p>
+                    <p><span>Enjoy your workout and log your fitness</span></p>
+                </div>    
+            )
+        }
+        return (
+            <div>
+                <div id='WOHistContainer'>
+                    {dashboard}
                 </div>
                 <div className='row' id="WOOptions">
                     <div className="col-md-4 col-sm-6 col-xs-12">

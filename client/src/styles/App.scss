@@ -1,3 +1,5 @@
+@import "../styles/variables.scss";
+
 html, body, #root{
   height: 100vh;
   width: 100vw;
@@ -11,7 +13,7 @@ h1, h2, h3{
 
 .landing-container{
   opacity: 0.8;
-  background: url('../src/assets/FITLOG.jpg') no-repeat center center/cover;
+  background: url('../../src/assets/FITLOG.jpg') no-repeat center center/cover;
   height: 100vh;
   display: flex;
   width: 100vw;
@@ -30,7 +32,7 @@ h1, h2, h3{
 }
 
 .NavTitle a, .NavTitle-center a{
-  color: bisque;
+  color: $titleColor;
 }
 
 .title :hover, .NavTitle :hover, .NavTitle-center :hover{
@@ -128,7 +130,7 @@ input:focus{
 }
 
 #SignUp, #ForgotPwd{
-  color: bisque;
+  color: $titleColor;
 }
 
 .SignInContainer {
@@ -136,18 +138,18 @@ input:focus{
 }
 
 .NavTitle {
-  color: bisque;
+  color: $titleColor;
   margin-left: 30px;
   margin-right: 0px;
 }
 
 .NavTitle-center {
   margin: 0 auto;
-  color: bisque;
+  color: $titleColor;
 }
 
 .line{
-  background-color: bisque;
+  background-color: $titleColor;
   height: 3px;
   width: 30px;
   float: left;
@@ -161,7 +163,7 @@ input:focus{
 }
 
 #NavLinks i {
-  color: bisque;
+  color: $titleColor;
 }
 
 #HamburgerIcon {
@@ -190,7 +192,7 @@ input:focus{
 }
 
 #WOOptionContainer1, #WOOptionContainer2, #WOOptionContainer3 {
-  background-color: bisque
+  background-color: $titleColor
 }
 
 .WOOption span{

@@ -13,7 +13,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGOUT_SUCCESS,
-    FETCH_WORKOUTHISTORY
+    FETCH_WORKOUTHISTORY,
+    FETCH_MAXWEIGHT
   } from "../store/actions";
   
   const initialState = {
@@ -23,7 +24,8 @@ import {
     workoutHistory: [],
     loading: false,
     error: null,
-    isAuthenticated: false
+    isAuthenticated: false,
+    maxWeight: null
   };
   
   export default function workoutReducer(
@@ -111,6 +113,13 @@ import {
                 ...state,
                 loading: false,
                 workoutHistory: action.payload.workoutHist
+            };
+
+        case FETCH_MAXWEIGHT:
+            return {
+                ...state,
+                loading: false,
+                maxWeight: action.payload.maxWeight
             };
 
         case LOGIN_BEGIN:

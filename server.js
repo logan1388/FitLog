@@ -22,6 +22,7 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/exercises', require('./routes/api/exercises'));
 app.use('/api/workoutlog', require('./routes/api/workoutlog'));
 app.use('/api/workout', require('./routes/api/workout'));
+app.use('/api/maxweight', require('./routes/api/maxweight'));
 
 //app.use('/api/v1', index);
 

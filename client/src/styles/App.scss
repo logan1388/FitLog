@@ -372,6 +372,14 @@ input:focus{
   }
 }
 
+#MaxWeightContainer {
+  text-align: center;
+  font-weight: bold;
+  span {
+    padding-left: 15px;
+  }
+}
+
 /* Media queries */
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {

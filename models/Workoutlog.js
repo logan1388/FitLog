@@ -24,6 +24,9 @@ const workoutlogSchema = new mongoose.Schema({
     count: {
         type: Number,
         required: true
+    },
+    maxWeight: {
+        type: Number
     }
 });
 var ChestWorkoutlog = mongoose.model('chestworkoutlogs', workoutlogSchema);

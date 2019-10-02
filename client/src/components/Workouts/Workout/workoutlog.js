@@ -80,11 +80,20 @@ class Workoutlog extends Component {
                     <span id='Title_Count'>Count</span>
                 </div>
             )
+            if(this.props.maxWeight){
+                this.maxWeight = (
+                    <div id='MaxWeightContainer'>
+                        <span>Max Weight: {this.props.maxWeight.weight} {this.props.maxWeight.unit}</span>
+                        <span>Count: {this.props.maxWeight.count}</span>
+                    </div>
+                )
+            }
         }       
         return (
             <Fragment>
                 <div className="EC">
                     <Collapse isOpened={this.props.isOpened}>
+                        {this.maxWeight}
                         <div className='ExpExerciseContainer'>
                             <div className='DetailsLogContainer'>
                                 <span>Weight</span>                            
@@ -117,7 +126,8 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         workouts: state.workouts,
-        logs: state.logs
+        logs: state.logs,
+        maxWeight: state.maxWeight
     }
 };
 

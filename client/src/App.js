@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from '../src/components/layout/Header';
 import Landing from '../src/components/layout/Landing';
-import './App.css';
+import './styles/App.scss';
 import register from '../src/components/auth/register';
 import dashboard from '../src/components/dashboard/dashboard';
 import workout from './components/Workouts/workout';

@@ -25,6 +25,8 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 export const FETCH_WORKOUTHISTORY = "FETCH_WORKOUTHISTORY";
 
+export const FETCH_MAXWEIGHT = "FETCH_MAXWEIGHT";
+
 export const fetchExercises = (workout) => {
     return dispatch => {
         dispatch(fetchExercisesBegin());
@@ -42,18 +44,25 @@ export const fetchExercises = (workout) => {
     };
 }
 
-export const expandExercise = (workouts, category, name) => {
+export const expandExercise = (workouts, category, name, userId) => {
     return dispatch => {
         workouts.map(e => {
             if(e.name !== name && e.open === true){
                 e.open = false;
                 e.log = null;
             }
-        })
+        });
+        let exercise = {
+            userId: userId,
+            category: category,
+            name: name
+        };
         dispatch(expandExerciseBegin());
-        axios.get('http://localhost:5000/api/workoutlog/'+category+'/'+name)
+        dispatch(maxWeight(userId, category, name));
+        axios.post('http://localhost:5000/api/workoutlog/log',exercise)
         .then(res => {
                 var logs = res.data;
+                console.log(logs);
                 logs.map(log => {
                     log.date = moment(log.date).format('MM/DD/YY HH:mm')
                 });
@@ -81,7 +90,7 @@ export const addExerciseLog = (exerciseLog, logToBeUpdated, workouts) => {
         logToBeUpdated.push(exerciseLog);
         axios.post('http://localhost:5000/api/workoutlog/',exerciseLog)
         .then(res => {
-            dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name));
+            dispatch(addMaxWeight(exerciseLog, workouts));
             dispatch(addTodayWorkout(exerciseLog.userId, exerciseLog.category, exerciseLog.date));
             return logToBeUpdated;
         })
@@ -123,10 +132,53 @@ export const login = (email, password, history) => {
     }
 }
 
+export const register = (name, username, email, password, history) => {    
+    return dispatch => {
+        let registerRequest = {
+            "name": name,
+            "username": username,
+            "email": email,
+            "password": password
+        }
+        axios.post('http://localhost:5000/api/users/',registerRequest)
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(error => console.log(error));
+    }
+}
+
 export const logout = () => {
     return dispatch => {
         localStorage.removeItem('user');
         dispatch(logoutSuccess());
+    }
+}
+
+export const addMaxWeight = (exerciseLog, workouts) => {
+    return dispatch => {
+        axios.post('http://localhost:5000/api/maxweight/',exerciseLog)
+        .then(res => {
+            dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name, exerciseLog.userId));
+            console.log(res);
+        })
+        .catch(error => dispatch(addExerciseLogFailure(error)));
+    }
+}
+
+export const maxWeight = (userId, category, name) => {
+    return dispatch => {
+        let maxWeightRequest = {
+            "userId": userId,
+            "category": category,
+            "name": name
+        };
+        axios.post('http://localhost:5000/api/maxweight/weight',maxWeightRequest)
+        .then(res => {
+            console.log(res.data);
+            dispatch(fetchMaxWeightSuccess(res.data));
+        })
+        .catch(error => dispatch(addExerciseLogFailure(error)));
     }
 }
 
@@ -213,4 +265,9 @@ export const logoutSuccess = () => ({
 export const workoutHistorySuccess = workoutHist => ({
     type: FETCH_WORKOUTHISTORY,
     payload: { workoutHist }
+});
+
+export const fetchMaxWeightSuccess = maxWeight => ({
+    type: FETCH_MAXWEIGHT,
+    payload: { maxWeight }
 });

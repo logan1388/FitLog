@@ -31,7 +31,7 @@ class Register extends Component {
 
     register = (e) => {
         e.preventDefault();
-        this.props.dispatch(register(this.state.name, this.state.username, this.state.email, this.state.password));
+        this.props.dispatch(register(this.state.name, this.state.username, this.state.email, this.state.password, this.props.history));
     }
     render(){
         return (

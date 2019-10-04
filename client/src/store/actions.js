@@ -22,6 +22,9 @@ export const LOGIN_BEGIN = "LOGIN_BEGIN";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
+export const REGISTER_RESET = "REGISTER_RESET";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 export const FETCH_WORKOUTHISTORY = "FETCH_WORKOUTHISTORY";
@@ -144,6 +147,8 @@ export const register = (name, username, email, password, history) => {
         axios.post(endpoint+'/api/users/',registerRequest)
         .then(res => {
             console.log(res.data);
+            dispatch(registerSuccess());
+            history.push('/');
         })
         .catch(error => console.log(error));
     }
@@ -261,6 +266,14 @@ export const loginFailure = error => ({
 
 export const logoutSuccess = () => ({
     type: LOGOUT_SUCCESS
+});
+
+export const registerReset = () => ({
+    type: REGISTER_RESET
+});
+
+export const registerSuccess = () => ({
+    type: REGISTER_SUCCESS
 });
 
 export const workoutHistorySuccess = workoutHist => ({

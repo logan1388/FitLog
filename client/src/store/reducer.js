@@ -12,6 +12,8 @@ import {
     LOGIN_BEGIN,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
+    REGISTER_RESET,
+    REGISTER_SUCCESS,
     LOGOUT_SUCCESS,
     FETCH_WORKOUTHISTORY,
     FETCH_MAXWEIGHT
@@ -25,6 +27,7 @@ import {
     loading: false,
     error: null,
     isAuthenticated: false,
+    register: false,
     maxWeight: null
   };
   
@@ -146,6 +149,18 @@ import {
                 logs: []
             };
 
+        case REGISTER_RESET:
+            return {
+                ...state,
+                register: false
+            };
+
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                register: true
+            };
+            
         case LOGOUT_SUCCESS:
             return {
                 ...state,

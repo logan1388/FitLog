@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { login } from '../../store/actions';
+import { login, registerReset } from '../../store/actions';
 import { connect } from 'react-redux';
 
 class Landing extends Component {
@@ -11,6 +11,7 @@ class Landing extends Component {
             email: '',
             password: ''
         }
+        this.signInContent = null;
     }
     
     demo = () => {
@@ -39,11 +40,14 @@ class Landing extends Component {
         }
     }
 
+    registerReset = () => {
+        this.props.dispatch(registerReset());
+    }
+
     render(){
-        return (
-            <div>
-                <div className='landing-container'>
-                    <div className="SignInContainer">
+        if(!this.props.register){
+            this.signInContent = (
+                <div className="SignInContainer">
                     <div className="card">
                         <div className="card-header">
                             <h3>Sign In</h3>
@@ -82,7 +86,27 @@ class Landing extends Component {
                             <input id='DemoBtn' type="submit" value="Demo" className="btn" onClick={this.demo}/>
                         </div> */}
                     </div>          
-                    </div>             
+                    </div>  
+            )
+        }
+        if(this.props.register){
+            this.signInContent = (
+                <div id="RegisterConfirmationContainer">
+                    <div id="RegisterConfirmation" className="card">
+                        <div className="card-header">
+                            <span id="RegisterConfirmText">You are all set to log your fitness!</span>
+                        </div>
+                        <div id="RegisterBtnContainer" className="form-group">
+                            <input required id='RegisterBtn' type="submit" value="Sign In" onClick={this.registerReset} className="btn float-right register_btn" />
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        return (
+            <div>
+                <div className='landing-container'>
+                    {this.signInContent}       
                 </div>
             </div>
         )
@@ -92,7 +116,8 @@ class Landing extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        isAuthenticated: state.isAuthenticated
+        isAuthenticated: state.isAuthenticated,
+        register: state.register
     }
 };
 

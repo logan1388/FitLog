@@ -9,8 +9,11 @@ class Register extends Component {
             name: '',
             username: '',
             email: '',
-            password: ''
-        }
+            password: '',
+            confirmPassword: '',
+            validationMsg: ''
+        };
+        
     }
 
     nameChange = (e) => {
@@ -29,14 +32,25 @@ class Register extends Component {
         this.setState({confirmPassword: e.target.value});
     }
 
+    validation = () => {
+        if(this.state.password !== this.state.confirmPassword){
+            this.setState({validationMsg: "Passwords doesn't match"});
+            return false;
+        }
+        else
+            return true;
+    }
+
     register = (e) => {
         e.preventDefault();
-        this.props.dispatch(register(this.state.name, this.state.username, this.state.email, this.state.password, this.props.history));
+        if(this.validation())
+            this.props.dispatch(register(this.state.name, this.state.username, this.state.email, this.state.password, this.props.history));
     }
     render(){
         return (
             <div className='landing-container'>
-                <div id="RegisterCardContainer" className="card">
+                <div className={"card " + (this.state.validationMsg ? "RegisterCardWithValidationText" : "RegisterCardContainer")}>
+                    <span>{this.state.validationMsg}</span>
                     <div className="card-header">
                         <h3>Sign Up</h3>
                     </div>
@@ -57,7 +71,7 @@ class Register extends Component {
                             <div className="input-group form-group">
                                 <input required type="password" className="form-control" value={this.state.confirmPassword} onChange={this.confirmPasswordChange} placeholder="Confirm Password" />
                             </div>
-                            <div className="form-group">
+                            <div id="RegisterBtnContainer" className="form-group">
                                 <input required id='RegisterBtn' type="submit" value="Register" className="btn float-right register_btn" />
                             </div>
                         </form>

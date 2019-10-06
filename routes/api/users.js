@@ -19,7 +19,7 @@ router.post('/', [
 async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        return res.status(400).json({ errors: errors.array()});
+        return res.status(400).send(errors.array()[0].msg);
     }
 
     const { name, username, email, password } = req.body;
@@ -64,18 +64,19 @@ async (req, res) => {
 });
 
 router.post('/authenticate', [
-    check('email', 'Please use a valid email').isEmail(),
-    check(
-        'password', 
-        'please enter password with minimum of 6 characters'
-    ).isLength({
-        min: 6
-    })
+    check('email', 'Invalid Email').isEmail()
+    // check(
+    //     'password', 
+    //     'please enter password with minimum of 6 characters'
+    // ).isLength({
+    //     min: 6
+    // })
 ],
     async(req, res) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()){
-            return res.status(400).json({ errors: errors.array()});
+            console.log(errors.array()[0].msg);
+            return res.status(400).send(errors.array()[0].msg);
         }
         const { email, password } = req.body;
         try {
@@ -85,7 +86,7 @@ router.post('/authenticate', [
                 bcrypt.compare(password, user.password, function(err, result) {
                     passwordMatch = result;
                     if(!passwordMatch){
-                        res.send('Invalid Password');
+                        res.status(400).send('Invalid Email/Password');
                     }
                     const payload = {
                         user: {
@@ -110,7 +111,7 @@ router.post('/authenticate', [
                 });
             }
             else{
-                res.send('User not found');
+                res.status(400).send('Invalid Email/Password');
             }
         }
         catch(err){

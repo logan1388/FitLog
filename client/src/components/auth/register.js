@@ -51,8 +51,8 @@ class Register extends Component {
     render(){
         return (
             <div className='landing-container'>
-                <div className={"card " + (this.state.validationMsg || this.props.error ? "RegisterCardWithValidationText" : "RegisterCardContainer")}>
-                    <span>{this.state.validationMsg || this.props.error}</span>
+                <div className={"card " + (this.state.validationMsg || this.props.registerError ? "RegisterCardWithValidationText" : "RegisterCardContainer")}>
+                    <span>{this.state.validationMsg || this.props.registerError}</span>
                     <div className="card-header">
                         <h3>Sign Up</h3>
                     </div>
@@ -87,7 +87,7 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         isAuthenticated: state.isAuthenticated,
-        error: state.error
+        registerError: state.registerError
     }
 };
 

@@ -28,7 +28,8 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
-export const CLEAR_ERROR = "CLEAR_ERROR";
+export const CLEAR_REGISTERERROR = "CLEAR_REGISTERERROR";
+export const CLEAR_LOGINERROR = "CLEAR_LOGINERROR";
 
 export const FETCH_WORKOUTHISTORY = "FETCH_WORKOUTHISTORY";
 
@@ -123,6 +124,7 @@ export const addTodayWorkout = (userId, category, date) => {
 
 export const login = (email, password, history) => {    
     return dispatch => {
+        dispatch(loginBegin());
         let loginRequest = {
             "email": email,
             "password": password
@@ -135,7 +137,7 @@ export const login = (email, password, history) => {
             history.push('/Dashboard');
             return res.data.user;
         })
-        .catch(error => console.log(error));
+        .catch(error => dispatch(loginFailure(error)));
     }
 }
 
@@ -280,8 +282,12 @@ export const registerFailure = (error) => ({
     payload: { error }
 });
 
-export const clearErrorMsg = () => ({
-    type: CLEAR_ERROR
+export const clearRegisterErrorMsg = () => ({
+    type: CLEAR_REGISTERERROR
+});
+
+export const clearLoginErrorMsg = () => ({
+    type: CLEAR_LOGINERROR
 })
 
 export const workoutHistorySuccess = workoutHist => ({

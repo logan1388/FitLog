@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { login, registerReset, clearErrorMsg } from '../../store/actions';
+import { login, registerReset, clearRegisterErrorMsg, clearLoginErrorMsg } from '../../store/actions';
 import { connect } from 'react-redux';
 
 class Landing extends Component {
@@ -44,8 +44,12 @@ class Landing extends Component {
         this.props.dispatch(registerReset());
     }
 
+    componentDidMount = () => {
+        this.props.dispatch(clearRegisterErrorMsg());
+        this.props.dispatch(clearLoginErrorMsg());
+    }
+
     render(){
-        this.props.dispatch(clearErrorMsg());
         if(!this.props.register){
             this.signInContent = (
                 <div className="SignInContainer">
@@ -53,6 +57,7 @@ class Landing extends Component {
                         <div className="card-header">
                             <h3>Sign In</h3>
                         </div>
+                        <span id="loginValidationText">{this.props.loginError}</span>
                         <div className="card-body">
                             <form onSubmit={this.handleSubmit}>
                                 <div className="input-group form-group">
@@ -66,28 +71,19 @@ class Landing extends Component {
                                         <span className="input-group-text"><i className="fa fa-key"></i></span>
                                     </div>
                                     <input required type="password" className="form-control" value={this.state.password} onChange={this.passwordChange} placeholder="password" />
-                                </div>
-                                <div className="row align-items-center remember">
-                                    <input type="checkbox" />Remember Me
-                              </div>
-                                <div className="form-group">
+                                </div>     
+                                <div id="LoginBtnContainer" className="form-group">
                                     <input id='LoginBtn' type="submit" value="Login" onClick={this.login} className="btn float-right login_btn" />
                                 </div>
                             </form>
                         </div>
-                        <div className="card-footer">
+                        <div className="card-footer SignUpLink">
                             <div className="d-flex justify-content-center links">
                                 Don't have an account?<Link id='SignUp' to='/Register'>Sign Up</Link>
-                            </div>
-                            <div className="d-flex justify-content-center">
-                                <Link id='ForgotPwd' to='/Register'>Forgot your password?</Link>
-                            </div>
-                        </div>
-                        {/* <div className="form-group">
-                            <input id='DemoBtn' type="submit" value="Demo" className="btn" onClick={this.demo}/>
-                        </div> */}
+                            </div>                     
+                        </div>               
                     </div>          
-                    </div>  
+                </div>  
             )
         }
         if(this.props.register){
@@ -118,7 +114,8 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         isAuthenticated: state.isAuthenticated,
-        register: state.register
+        register: state.register,
+        loginError: state.loginError
     }
 };
 

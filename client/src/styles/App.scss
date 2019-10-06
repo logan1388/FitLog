@@ -126,7 +126,7 @@ input:focus{
 }
 
 #RegisterBtn {
-  margin: 15px 37% 0 35%;
+  margin: 15px 0 0 0;
 }
     
 .login_btn, .register_btn, .demo_btn{
@@ -380,8 +380,16 @@ input:focus{
   margin: 10px 0px 0px 15px;
 }
 
-#RegisterCardContainer {
+.RegisterCardContainer {
   height: 410px;
+}
+
+.RegisterCardWithValidationText {
+  height: 440px;
+  span {
+    color: $titleColor;
+    text-align: center;
+  }
 }
 
 #RegisterFieldsContainer {

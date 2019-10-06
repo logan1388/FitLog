@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { login, registerReset } from '../../store/actions';
+import { login, registerReset, clearErrorMsg } from '../../store/actions';
 import { connect } from 'react-redux';
 
 class Landing extends Component {
@@ -45,6 +45,7 @@ class Landing extends Component {
     }
 
     render(){
+        this.props.dispatch(clearErrorMsg());
         if(!this.props.register){
             this.signInContent = (
                 <div className="SignInContainer">

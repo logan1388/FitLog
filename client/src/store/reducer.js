@@ -14,7 +14,9 @@ import {
     LOGIN_FAILURE,
     REGISTER_RESET,
     REGISTER_SUCCESS,
+    REGISTER_FAILURE,
     LOGOUT_SUCCESS,
+    CLEAR_ERROR,
     FETCH_WORKOUTHISTORY,
     FETCH_MAXWEIGHT
   } from "../store/actions";
@@ -158,7 +160,21 @@ import {
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                register: true
+                register: true,
+                error: null
+            };
+
+        case REGISTER_FAILURE:
+            return {
+                ...state,
+                register: false,
+                error: action.payload.error.response.data
+            };
+
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                error: null
             };
             
         case LOGOUT_SUCCESS:

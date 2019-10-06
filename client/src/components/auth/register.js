@@ -43,14 +43,16 @@ class Register extends Component {
 
     register = (e) => {
         e.preventDefault();
-        if(this.validation())
+        if(this.validation()){
+            this.setState({validationMsg: ""});
             this.props.dispatch(register(this.state.name, this.state.username, this.state.email, this.state.password, this.props.history));
+        }
     }
     render(){
         return (
             <div className='landing-container'>
-                <div className={"card " + (this.state.validationMsg ? "RegisterCardWithValidationText" : "RegisterCardContainer")}>
-                    <span>{this.state.validationMsg}</span>
+                <div className={"card " + (this.state.validationMsg || this.props.error ? "RegisterCardWithValidationText" : "RegisterCardContainer")}>
+                    <span>{this.state.validationMsg || this.props.error}</span>
                     <div className="card-header">
                         <h3>Sign Up</h3>
                     </div>
@@ -84,7 +86,8 @@ class Register extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        isAuthenticated: state.isAuthenticated
+        isAuthenticated: state.isAuthenticated,
+        error: state.error
     }
 };
 

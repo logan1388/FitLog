@@ -24,8 +24,11 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 export const REGISTER_RESET = "REGISTER_RESET";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+
+export const CLEAR_ERROR = "CLEAR_ERROR";
 
 export const FETCH_WORKOUTHISTORY = "FETCH_WORKOUTHISTORY";
 
@@ -146,11 +149,10 @@ export const register = (name, username, email, password, history) => {
         }
         axios.post(endpoint+'/api/users/',registerRequest)
         .then(res => {
-            console.log(res.data);
             dispatch(registerSuccess());
             history.push('/');
         })
-        .catch(error => console.log(error));
+        .catch(error => dispatch(registerFailure(error)));
     }
 }
 
@@ -166,7 +168,6 @@ export const addMaxWeight = (exerciseLog, workouts) => {
         axios.post(endpoint+'/api/maxweight/',exerciseLog)
         .then(res => {
             dispatch(expandExercise(workouts, exerciseLog.category, exerciseLog.name, exerciseLog.userId));
-            console.log(res);
         })
         .catch(error => dispatch(addExerciseLogFailure(error)));
     }
@@ -181,7 +182,6 @@ export const maxWeight = (userId, category, name) => {
         };
         axios.post(endpoint+'/api/maxweight/weight',maxWeightRequest)
         .then(res => {
-            console.log(res.data);
             dispatch(fetchMaxWeightSuccess(res.data));
         })
         .catch(error => dispatch(addExerciseLogFailure(error)));
@@ -196,7 +196,6 @@ export const workoutHistory = (userId) => {
         axios.post(endpoint+'/api/workout/workoutHistory', param)
             .then(res => {
                 let workoutHist = res.data;
-                console.log(workoutHist);
                 dispatch(workoutHistorySuccess(workoutHist));
             })
             .catch(error => console.log(error));
@@ -275,6 +274,15 @@ export const registerReset = () => ({
 export const registerSuccess = () => ({
     type: REGISTER_SUCCESS
 });
+
+export const registerFailure = (error) => ({
+    type: REGISTER_FAILURE,
+    payload: { error }
+});
+
+export const clearErrorMsg = () => ({
+    type: CLEAR_ERROR
+})
 
 export const workoutHistorySuccess = workoutHist => ({
     type: FETCH_WORKOUTHISTORY,

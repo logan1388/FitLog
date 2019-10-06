@@ -50,6 +50,7 @@ class Landing extends Component {
     }
 
     render(){
+        this.props.dispatch(clearErrorMsg());
         if(!this.props.register){
             this.signInContent = (
                 <div className="SignInContainer">

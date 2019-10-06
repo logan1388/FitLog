@@ -16,7 +16,8 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
     LOGOUT_SUCCESS,
-    CLEAR_ERROR,
+    CLEAR_REGISTERERROR,
+    CLEAR_LOGINERROR,
     FETCH_WORKOUTHISTORY,
     FETCH_MAXWEIGHT
   } from "../store/actions";
@@ -28,6 +29,8 @@ import {
     workoutHistory: [],
     loading: false,
     error: null,
+    loginError: null,
+    registerError: null,
     isAuthenticated: false,
     register: false,
     maxWeight: null
@@ -131,11 +134,10 @@ import {
             return {
                 ...state,
                 loading: true,
-                error: null
+                registerError: null
             };
           
         case LOGIN_SUCCESS:
-            console.log(action.payload.user);
             return {
                 ...state,
                 loading: false,
@@ -147,8 +149,7 @@ import {
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
-                logs: []
+                loginError: action.payload.error.response.data
             };
 
         case REGISTER_RESET:
@@ -161,20 +162,26 @@ import {
             return {
                 ...state,
                 register: true,
-                error: null
+                registerError: null
             };
 
         case REGISTER_FAILURE:
             return {
                 ...state,
                 register: false,
-                error: action.payload.error.response.data
+                registerError: action.payload.error.response.data
             };
 
-        case CLEAR_ERROR:
+        case CLEAR_REGISTERERROR:
             return {
                 ...state,
-                error: null
+                registerError: null
+            };
+
+        case CLEAR_LOGINERROR:
+            return {
+                ...state,
+                loginError: null
             };
             
         case LOGOUT_SUCCESS:

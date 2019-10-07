@@ -1,3 +1,5 @@
 # FitLog
 
-A Progressive web application used to log workouts
+A Progressive Web Application developed using React, NodeJS and MongoDB hosted in Google Cloud Platform
+
+https://fitlogui.appspot.com

@@ -1,3 +1,5 @@
 # FitLog
 
-A Progressive web application used to log workouts
+A Progressive Web Application used to log workouts
+
+https://fitlogui.appspot.com

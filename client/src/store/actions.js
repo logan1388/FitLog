@@ -70,7 +70,6 @@ export const expandExercise = (workouts, category, name, userId) => {
         axios.post(endpoint+'/api/workoutlog/log',exercise)
         .then(res => {
                 var logs = res.data;
-                console.log(logs);
                 logs.map(log => {
                     log.date = moment(log.date).utc().format('MM/DD/YY HH:mm')
                 });
@@ -113,7 +112,6 @@ export const addTodayWorkout = (userId, category, date) => {
             category: category,
             date: date
         }
-        console.log(workout);
         axios.post(endpoint+'/api/workout/',workout)
         .then(res => {
             console.log(res);
@@ -131,7 +129,6 @@ export const login = (email, password, history) => {
         }
         axios.post(endpoint+'/api/users/authenticate/',loginRequest)
         .then(res => {
-            console.log(res.data);
             localStorage.setItem('user', JSON.stringify(res));
             dispatch(loginSuccess(res.data.user));
             history.push('/Dashboard');

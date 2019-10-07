@@ -1,5 +1,9 @@
 runtime: nodejs
 env: flex
+
+manual_scaling:
+  instances: 1
+
 handlers:
 - url: /api/.*
   script: auto

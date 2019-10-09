@@ -2,6 +2,8 @@
 
 A Progressive Web Application developed using React, NodeJS and MongoDB hosted in Google Cloud Platform
 
+![logo](https://github.com/logan1388/FitLog/blob/master/client/public/FLIcon.png)
+
 https://fitlogui.appspot.com
 
 

@@ -7,21 +7,30 @@ manual_scaling:
   instances: 1
 
 handlers:
-  - url: /static/js/(.*)
-    static_files: build/static/js/\1
-    upload: build/static/js/(.*)
-  - url: /static/css/(.*)
-    static_files: build/static/css/\1
-    upload: build/static/css/(.*)
-  - url: /static/media/(.*)
-    static_files: build/static/media/\1
-    upload: build/static/media/(.*)
-  - url: /(.*\.(json|ico))$
+  - url: '/service-worker.js'
+    secure: always
+    static_files: build/service-worker.js
+    upload: build/service-worker.js
+    mime_type: application/javascript
+
+  - url: /(precache-manifest.*)$
+    secure: always
+    mime_type: application/javascript
     static_files: build/\1
-    upload: build/.*\.(json|ico)$
-  - url: /
-    static_files: build/index.html
-    upload: build/index.html
-  - url: /.*
+    upload: build/(precache-manifest.*)$
+
+  - url: /(.*\.js)$
+    secure: always
+    static_files: build/\1
+    upload: build/.*\.js$
+    mime_type: application/javascript
+
+  - url: /(.*\.(css|map|png|jpg|svg|ico|json|txt|woff))$
+    secure: always
+    static_files: build/\1
+    upload: build/.*\.(css|map|png|jpg|svg|ico|json|txt|woff)$
+
+  - url: '/(.*)'
+    secure: always
     static_files: build/index.html
     upload: build/index.html

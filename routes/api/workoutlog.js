@@ -5,6 +5,9 @@ const ChestWorkoutlog = require('../../models/Workoutlog').ChestWorkoutlog;
 const LegWorkoutlog = require('../../models/Workoutlog').LegWorkoutlog;
 const BackWorkoutlog = require('../../models/Workoutlog').BackWorkoutlog;
 const TricepsWorkoutlog = require('../../models/Workoutlog').TricepsWorkoutlog;
+const ShoulderWorkoutlog = require('../../models/Workoutlog').ShoulderWorkoutlog;
+const BicepsWorkoutlog = require('../../models/Workoutlog').BicepsWorkoutlog;
+
 const MaxWeight = require('../../models/MaxWeight');
 
 //@route POST api/workoutlog
@@ -70,6 +73,28 @@ router.post('/',
                     });
                     break;
                 }
+                case 'Shoulder': {
+                    workoutlog = new ShoulderWorkoutlog({
+                        userId,
+                        name,
+                        date,
+                        weight,
+                        unit,
+                        count
+                    });
+                    break;
+                }
+                case 'Biceps': {
+                    workoutlog = new BicepsWorkoutlog({
+                        userId,
+                        name,
+                        date,
+                        weight,
+                        unit,
+                        count
+                    });
+                    break;
+                }
                 default : {
                     res.send(req.body.category+' not found!');
                 }
@@ -114,6 +139,20 @@ router.post('/log',
                 }
                 case 'Triceps': {
                     let exerciselogs = await TricepsWorkoutlog.find({ userId: userId, name: name}).sort({ date: -1 });
+                    const maxWeight = await MaxWeight.findOne({ userId: userId, name: name });
+                    exerciselogs.map(logs => logs.maxWeight = maxWeight ? maxWeight.weight : '');
+                    res.json(exerciselogs);
+                    break;
+                }
+                case 'Shoulder': {
+                    let exerciselogs = await ShoulderWorkoutlog.find({ userId: userId, name: name}).sort({ date: -1 });
+                    const maxWeight = await MaxWeight.findOne({ userId: userId, name: name });
+                    exerciselogs.map(logs => logs.maxWeight = maxWeight ? maxWeight.weight : '');
+                    res.json(exerciselogs);
+                    break;
+                }
+                case 'Biceps': {
+                    let exerciselogs = await BicepsWorkoutlog.find({ userId: userId, name: name}).sort({ date: -1 });
                     const maxWeight = await MaxWeight.findOne({ userId: userId, name: name });
                     exerciselogs.map(logs => logs.maxWeight = maxWeight ? maxWeight.weight : '');
                     res.json(exerciselogs);

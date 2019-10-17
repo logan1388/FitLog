@@ -10,7 +10,6 @@ class Header extends Component {
     }
     render(){
         let user = localStorage.getItem('user');
-        //console.log(user);
         return (
             <Fragment>
             <nav className="navbar navbar-dark bg-dark">

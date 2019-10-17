@@ -33,10 +33,14 @@ var ChestWorkoutlog = mongoose.model('chestworkoutlogs', workoutlogSchema);
 var LegWorkoutlog = mongoose.model('legworkoutlogs', workoutlogSchema);
 var BackWorkoutlog = mongoose.model('backworkoutlogs', workoutlogSchema);
 var TricepsWorkoutlog = mongoose.model('tricepsworkoutlogs', workoutlogSchema);
+var ShoulderWorkoutlog = mongoose.model('shoulderworkoutlogs', workoutlogSchema);
+var BicepsWorkoutlog = mongoose.model('bicepsworkoutlogs', workoutlogSchema);
 
 module.exports = {
     ChestWorkoutlog: ChestWorkoutlog,
     LegWorkoutlog: LegWorkoutlog,
     BackWorkoutlog: BackWorkoutlog,
-    TricepsWorkoutlog: TricepsWorkoutlog
+    TricepsWorkoutlog: TricepsWorkoutlog,
+    ShoulderWorkoutlog: ShoulderWorkoutlog,
+    BicepsWorkoutlog: BicepsWorkoutlog
 }

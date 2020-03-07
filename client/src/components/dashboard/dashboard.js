@@ -29,13 +29,13 @@ class Dashboard extends Component {
             );
             dashboard = (
                 <div id='WOHist'>
-                    <div className='ml-5 mt-4'>
+                    <div className='ml-5 mr-5 mt-4'>
                         <span className='font-weight-bold'>Previous Workout: </span>
                         <span className='d-block text-center'>{category} - {date}</span>
                     </div>
-                    <div id='Prev5WorkoutsContainer' className='ml-5 mt-3'>
+                    <div className='ml-5 mr-5 mt-3'>
                         <span className='font-weight-bold'>Last 5 Workouts:</span>
-                        <span id='Prev5Workouts' className='ml-3'>{history}</span>
+                        <span className='ml-3'>{history}</span>
                     </div>
                 </div>
             )
@@ -53,7 +53,7 @@ class Dashboard extends Component {
                 <div id='WOHistContainer'>
                     {dashboard}
                 </div>
-                <div className='row' id="WOOptions">
+                <div className='row text-center'>
                     <div className="col-md-4 col-sm-6 col-xs-12">
                         <button id="ChestBtn" type="button" className="btn btn-outline-dark" onClick={() => this.selectWorkOut('Chest')}>CHEST</button>
                     </div>

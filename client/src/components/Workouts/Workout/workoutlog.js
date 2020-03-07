@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import {Collapse} from 'react-collapse';
+import { Collapse } from 'react-collapse';
 import Workouthistory from './workouthistory';
 import { connect } from 'react-redux';
 import { addExerciseLog } from '../../../store/actions';
 import WorkoutInput from './workoutInput';
 
 class Workoutlog extends Component {
-    constructor(props){
-        super(props);  
+    constructor(props) {
+        super(props);
         this.state = {
             log: {}
         }
@@ -18,17 +18,17 @@ class Workoutlog extends Component {
 
     getTimestamp = () => {
         var date = new Date().getDate();
-        var month = new Date().getMonth()+1;
+        var month = new Date().getMonth() + 1;
         var year = new Date().getFullYear();
         var hours = new Date().getHours();
         var min = new Date().getMinutes();
         var sec = new Date().getSeconds();
-        if(date<10) date = '0' + date;
-        if(month<10) month = '0' + month;
-        if(hours<10) hours = '0' + hours;
-        if(min<10) min = '0' + min;
-        if(sec<10) sec = '0' + sec;
-        let timestamp = month+'/'+date+'/'+year+' '+hours+':'+min+':'+sec;
+        if (date < 10) date = '0' + date;
+        if (month < 10) month = '0' + month;
+        if (hours < 10) hours = '0' + hours;
+        if (min < 10) min = '0' + min;
+        if (sec < 10) sec = '0' + sec;
+        let timestamp = month + '/' + date + '/' + year + ' ' + hours + ':' + min + ':' + sec;
         return timestamp;
     }
 
@@ -47,8 +47,8 @@ class Workoutlog extends Component {
         this.props.dispatch(addExerciseLog(this.exerciseLog, this.props.logs, this.props.workouts));
     }
 
-    render(){
-        if(this.props.logs.length > 0){
+    render() {
+        if (this.props.logs.length > 0) {
             this.logTitle = (
                 <div id='LogsTitle'>
                     <span id='Title_DateTime'>Date & Time</span>
@@ -57,7 +57,7 @@ class Workoutlog extends Component {
                     <span id='Title_Count'>Count</span>
                 </div>
             )
-            if(this.props.maxWeight){
+            if (this.props.maxWeight) {
                 this.maxWeight = (
                     <div id='MaxWeightContainer'>
                         <span>Max Weight: {this.props.maxWeight.weight} {this.props.maxWeight.unit}</span>
@@ -65,24 +65,22 @@ class Workoutlog extends Component {
                     </div>
                 )
             }
-        }       
+        }
         return (
             <Fragment>
-                <div className="EC">
-                    <Collapse isOpened={this.props.isOpened}>
-                        {this.maxWeight}
-                        <div className='ExpExerciseContainer'>
-                            <WorkoutInput addLog={(weight, unit, count) => this.addLog(weight, unit, count)}/>
-                            {this.logTitle}
-                            <div id='LogContainer'>
-                                <Workouthistory></Workouthistory>
-                            </div>
+                <Collapse isOpened={this.props.isOpened}>
+                    {this.maxWeight}
+                    <div className='ExpExerciseContainer'>
+                        <WorkoutInput addLog={(weight, unit, count) => this.addLog(weight, unit, count)} />
+                        {this.logTitle}
+                        <div id='LogContainer'>
+                            <Workouthistory></Workouthistory>
                         </div>
-                    </Collapse>     
-                </div>        
+                    </div>
+                </Collapse>
             </Fragment>
         )
-    } 
+    }
 }
 
 const mapStateToProps = state => {

@@ -221,10 +221,6 @@ input:focus{
   display: flex;
 }
 
-#WOOptions {
-  text-align: center;
-}
-
 #WOOptionContainer1, #WOOptionContainer2, #WOOptionContainer3 {
   background-color: $titleColor
 }
@@ -257,14 +253,8 @@ input:focus{
 
 .ExerciseContainer span {
   display: block;
-  /* margin: 22px; */
   padding: 25px;
   font-weight: bold;
-}
-
-.EC {
-  width: 90vw;
-  margin: 0 5%;
 }
 
 .ExpExerciseContainer {
@@ -283,16 +273,6 @@ input:focus{
 
 .DetailsLogContainer input {
   width: 60px;
-}
-
-.LogList, #LogsTitle{
-  display: block;
-  margin-right: 15px;
-}
-
-#LogsTitle span {
-  display: inline-block;
-  font-weight: bold;
 }
 
 #Title_DateTime {
@@ -341,41 +321,6 @@ input:focus{
   padding: 3px 0px 3px 0px;
   margin: 0px 0px 0px 30px;
   text-align: right;
-}
-
-#PreviousWOContainer {
-  width: 100vw;
-  display: inline-block;
-  margin: 0px 5%;
-}
-
-#PreviousWOsContainer {
-  float: left;
-  border-style: solid;
-  margin: 10px 5%;
-}
-
-#PreviousWorkoutLabel {
-  float: left;
-  width: 40%;
-  margin: 10px 0px 0px 5px;
-  font-weight: bold;
-  text-align: end;
-}
-
-#PreviousWorkoutsLabel {
-  float: left;
-  width: 40%;
-  margin: 10px 0px 15px 20px;
-  font-weight: bold;
-  text-align: end;
-  height: 155px;
-}
-
-#PreviousWorkout, .PreviousWorkouts {
-  width: 45%;
-  float: left;
-  margin: 10px 0px 0px 15px;
 }
 
 .RegisterCardContainer {

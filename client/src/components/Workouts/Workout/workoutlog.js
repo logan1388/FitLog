@@ -95,19 +95,17 @@ class Workoutlog extends Component {
                     <Collapse isOpened={this.props.isOpened}>
                         {this.maxWeight}
                         <div className='ExpExerciseContainer'>
-                            <div className='DetailsLogContainer'>
+                            <div className='DetailsLogContainer d-inline-block mt-3 mb-3'>
                                 <span>Weight</span>                            
                                 <input type='number' value={this.state.weight} onChange={this.weightChange}/>
-                                <select value={this.state.unit} onChange={this.unitChange}>
+                                <select className='ml-3 mr-3' value={this.state.unit} onChange={this.unitChange}>
                                     <option value='lbs'>lbs</option>
                                     <option value='kgs'>kgs</option>
                                 </select>
-                            </div>
-                            <div className='DetailsLogContainer'>
                                 <span>Count</span>
                                 <input type='number' value={this.state.count} onChange={this.countChange}/>
-                            </div>               
-                            <div id="SaveLogBtn">
+                            </div>
+                            <div id="SaveLogBtn" className='d-inline-flex ml-3 mr-3'>
                                 <button disabled={!(this.state.weight > 0 && this.state.count > 0)} type="button" className="btn btn-outline-dark" onClick={this.addLog}>Add</button>
                             </div>
                             {this.logTitle}

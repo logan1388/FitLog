@@ -61,34 +61,34 @@ h1, h2, h3{
   margin-left: 10px;
   color: #FFC312;
 }
-    
+
 .social_icon span:hover{
   color: white;
   cursor: pointer;
 }
-    
+
 .social_icon{
   position: absolute;
   right: 20px;
   top: -45px;
 }
-    
+
 .input-group-prepend span{
   width: 50px;
   background-color: dodgerblue;
   color: black;
   border:0 !important;
 }
-    
+
 input:focus{
   outline: 0 0 0 0  !important;
-  box-shadow: 0 0 0 0 !important; 
+  box-shadow: 0 0 0 0 !important;
 }
-    
+
 .remember{
   color: white;
 }
-    
+
 .remember input{
   width: 20px;
   height: 20px;
@@ -139,22 +139,22 @@ input:focus{
 #RegisterBtn {
   margin: 15px 0 0 0;
 }
-    
+
 .login_btn, .register_btn, .demo_btn{
   color: black;
   background-color: #FFC312;
   width: 100px;
 }
-    
+
 .login_btn:hover, .register_btn:hover, .demo_btn:hover {
   color: black;
   background-color: white;
 }
-    
+
 .links{
   color: white;
 }
-    
+
 .links a{
   margin-left: 4px;
 }
@@ -173,7 +173,6 @@ input:focus{
 
 .NavTitle {
   color: $titleColor;
-  margin-left: 30px;
   margin-right: 0px;
 }
 
@@ -201,19 +200,20 @@ input:focus{
 }
 
 #HamburgerIcon {
-  display: none;
+  span {
+    display: block;
+    float: none;
+  }
 }
 
 #WOHistContainer {
-  height: 250px;
+  height: 300px;
   display: flow-root;
   background: lightgrey;
 }
 
-#WOHistContainer span{
-  margin: 15px 50px;
-  display: inline-block;
-  font-weight: normal;
+#WOHist {
+  width: 100%;
 }
 
 .WOOption {
@@ -276,11 +276,6 @@ input:focus{
   cursor: default;
 }
 
-.DetailsLogContainer {
-  display: inline-block;
-  margin: 15px 15px 15px 0;
-}
-
 .DetailsLogContainer span {
   padding: 0 10px 0 0;
   display: inline-block;
@@ -288,14 +283,6 @@ input:focus{
 
 .DetailsLogContainer input {
   width: 60px;
-}
-
-.DetailsLogContainer select {
-  margin-left: 10px;
-}
-
-#SaveLogBtn {
-  display: inline-flex;
 }
 
 .LogList, #LogsTitle{
@@ -432,93 +419,18 @@ input:focus{
   .card {
     width: 400px;
   }
-}
 
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn, #BicepsBtn, #TricepsBtn {
-    margin-left: 15%;
-    margin-right: 15%;
+  #HamburgerIcon {
+    display: none;
   }
 
-  #PreviousWorkoutLabel {
-    width: 30%;
-  }
-  
-  #PreviousWorkoutsLabel {
-    width: 30%;
-  }
-  
-  #PreviousWorkout, .PreviousWorkouts {
-    width: 55%;
+  .NavTitle {
+    margin-left: 30px;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  #ChestBtn, #LegsBtn, #ShoulderBtn, #BackBtn, #BicepsBtn, #TricepsBtn {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .col-md-4{
-    padding: 0;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 949px) {
-  #WOHistContainer span{
-    margin-left: 5%;
-    padding-left: 15px;
-  }
-
-  #PreviousWOContainer {
-    width: 55%;
-    margin-left: 6%;
-  }
-
-  #PreviousWOsContainer {
-    width: 55%;
-    margin: 0 0 0 6%;
-  }
-
-  #PreviousWorkoutLabel {
-    width: 35%;
-    margin-left: 0px;
-  }
-
-  #PreviousWorkoutsLabel {
-    width: 35%;
-    height: 165px;
-    margin-left: 0px;
-  }
-}
-
-@media only screen and (min-width: 950px) {
-  #WOHistContainer span{
-    margin-left: 10%;
-    padding-left: 15px;
-  }
-
-  #PreviousWOContainer {
-    width: 50%;
-    margin-left: 5%;
-  }
-
-  #PreviousWOsContainer {
-    width: 50%;
-    margin: 0 0 0 5%;
-  }
-
-  #PreviousWorkoutLabel {
-    margin-left: 15px;
-  }
-
-  #PreviousWorkoutsLabel {
-    margin-left: 15px;
-    height: 165px;
-  }
-
-  #PreviousWorkout, .PreviousWorkouts {
-    width: 50%;
-    margin-top: 10px;
+  #WOHist {
+    width: 75%;
   }
 }

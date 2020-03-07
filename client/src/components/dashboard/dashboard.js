@@ -25,17 +25,17 @@ class Dashboard extends Component {
         let dashboard = '';
         if(this.props.workoutHistory.length > 0){
             history = this.props.workoutHistory.slice(0, 5).map(wh => 
-            <div key={wh._id} className="PreviousWorkouts">{wh.category} - {moment(wh.date).format('MM/DD/YY')}</div>
+            <span key={wh._id} className='d-block text-center mt-2' >{wh.category} - {moment(wh.date).format('MM/DD/YY')}</span>
             );
             dashboard = (
-                <div>
-                    <div id="PreviousWOContainer">
-                        <div id="PreviousWorkoutLabel">Previous Workout:</div>
-                        <div id="PreviousWorkout">{category} - {date}</div>
+                <div id='WOHist'>
+                    <div className='ml-5 mt-4'>
+                        <span className='font-weight-bold'>Previous Workout: </span>
+                        <span className='d-block text-center'>{category} - {date}</span>
                     </div>
-                    <div id="PreviousWOsContainer">
-                        <div id="PreviousWorkoutsLabel">Last 5 Workouts:</div>
-                        {history}
+                    <div id='Prev5WorkoutsContainer' className='ml-5 mt-3'>
+                        <span className='font-weight-bold'>Last 5 Workouts:</span>
+                        <span id='Prev5Workouts' className='ml-3'>{history}</span>
                     </div>
                 </div>
             )

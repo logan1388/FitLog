@@ -11,9 +11,7 @@ class Workoutlog extends Component {
         this.state = {
             log: {}
         }
-        this.logs = null;
         this.exerciseLog = {};
-        this.logTitle = null;
     }
 
     getTimestamp = () => {
@@ -48,33 +46,29 @@ class Workoutlog extends Component {
     }
 
     render() {
-        if (this.props.logs.length > 0) {
-            this.logTitle = (
-                <div id='LogsTitle'>
-                    <span id='Title_DateTime'>Date & Time</span>
-                    <span id='Title_Weight'>Weight</span>
-                    <span id='Title_Unit'>Unit</span>
-                    <span id='Title_Count'>Count</span>
-                </div>
-            )
-            if (this.props.maxWeight) {
-                this.maxWeight = (
-                    <div className='text-center font-weight-bold'>
-                        <span>Max Weight: {this.props.maxWeight.weight} {this.props.maxWeight.unit}</span>
-                        <span className='pl-3'>Count: {this.props.maxWeight.count}</span>
-                    </div>
-                )
-            }
-        }
         return (
             <Fragment>
                 <Collapse isOpened={this.props.isOpened}>
-                    {this.maxWeight}
+                    {this.props && this.props.maxWeight &&
+                        <div className='text-center font-weight-bold'>
+                            <span>Max Weight: {this.props.maxWeight.weight} {this.props.maxWeight.unit}</span>
+                            <span className='pl-3'>Count: {this.props.maxWeight.count}</span>
+                        </div>
+                    }
                     <div className='ExpExerciseContainer'>
                         <WorkoutInput addLog={(weight, unit, count) => this.addLog(weight, unit, count)} />
-                        {this.logTitle}
+                        {this.props && this.props.length &&
+                            <div id='LogsTitle'>
+                                <span id='Title_DateTime'>Date & Time</span>
+                                <span id='Title_Weight'>Weight</span>
+                                <span id='Title_Unit'>Unit</span>
+                                <span id='Title_Count'>Count</span>
+                            </div>
+                        }
                         <div id='LogContainer'>
-                            <Workouthistory></Workouthistory>
+                            {this.props.logs && this.props.logs.map((logs, idx) =>
+                                <Workouthistory key={idx} {...logs} />
+                            )}
                         </div>
                     </div>
                 </Collapse>

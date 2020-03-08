@@ -42,9 +42,9 @@ class Dashboard extends Component {
         }
         else{
             dashboard = (
-                <div id="WelcomeNoteContainer">
-                    <p><span>Welcome to FITLOG!</span></p>
-                    <p><span>Enjoy your workout and log your fitness</span></p>
+                <div className='text-center mt-5'>
+                    <p><span className='font-weight-bold'>Welcome to FITLOG!</span></p>
+                    <p><span className='font-weight-bold'>Enjoy your workout and log your fitness</span></p>
                 </div>    
             )
         }

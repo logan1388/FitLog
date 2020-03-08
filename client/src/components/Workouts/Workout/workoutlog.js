@@ -57,7 +57,7 @@ class Workoutlog extends Component {
                     }
                     <div className='ExpExerciseContainer'>
                         <WorkoutInput addLog={(weight, unit, count) => this.addLog(weight, unit, count)} />
-                        {this.props.logs && this.props.logs.length &&
+                        {this.props.logs && this.props.logs.length > 0 &&
                             <div id='LogsTitle'>
                                 <span id='Title_DateTime'>Date & Time</span>
                                 <span id='Title_Weight'>Weight</span>

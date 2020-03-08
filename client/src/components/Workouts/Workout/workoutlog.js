@@ -59,9 +59,9 @@ class Workoutlog extends Component {
             )
             if (this.props.maxWeight) {
                 this.maxWeight = (
-                    <div id='MaxWeightContainer'>
+                    <div className='text-center font-weight-bold'>
                         <span>Max Weight: {this.props.maxWeight.weight} {this.props.maxWeight.unit}</span>
-                        <span>Count: {this.props.maxWeight.count}</span>
+                        <span className='pl-3'>Count: {this.props.maxWeight.count}</span>
                     </div>
                 )
             }

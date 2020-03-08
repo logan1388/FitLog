@@ -25,7 +25,7 @@ const WorkoutInput = props => {
 
     return (
         <React.Fragment>
-            <div className='DetailsLogContainer d-inline-block mt-3 mb-3'>
+            <div className='DetailsLogContainer d-inline-block m-3'>
                 <span>Weight</span>
                 <input type='number' value={weight} onChange={weightChange} />
                 <select className='ml-3 mr-3' value={unit} onChange={unitChange}>

@@ -50,7 +50,7 @@ class Workout extends Component {
         .map(key => {
             return [...Array(this.props.workouts[key])].map(() => {
                 return (<Fragment key = {this.props.workouts[key]._id}>
-                <div className = 'ExerciseContainer'
+                <div className = 'ExerciseContainer mt-3 mb-3'
                     onClick = {() => this.expandExercise(key)}
                     ><span>{this.props.workouts[key]['name']}</span>
                 </div>

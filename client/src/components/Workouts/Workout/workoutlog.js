@@ -65,7 +65,7 @@ class Workoutlog extends Component {
                                 <span id='Title_Count'>Count</span>
                             </div>
                         }
-                        <div id='LogContainer'>
+                        <div id='LogContainer' className='mr-3'>
                             {this.props.logs && this.props.logs.map((logs, idx) =>
                                 <Workouthistory key={idx} {...logs} />
                             )}

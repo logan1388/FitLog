@@ -58,18 +58,20 @@ class Workoutlog extends Component {
                     <div className='ExpExerciseContainer'>
                         <WorkoutInput addLog={(weight, unit, count) => this.addLog(weight, unit, count)} />
                         {this.props.logs && this.props.logs.length > 0 &&
-                            <div id='LogsTitle'>
-                                <span id='Title_DateTime'>Date & Time</span>
-                                <span id='Title_Weight'>Weight</span>
-                                <span id='Title_Unit'>Unit</span>
-                                <span id='Title_Count'>Count</span>
-                            </div>
+                            <Fragment>
+                                <div id='LogsTitle'>
+                                    <span id='Title_DateTime'>Date & Time</span>
+                                    <span id='Title_Weight'>Weight</span>
+                                    <span id='Title_Unit'>Unit</span>
+                                    <span id='Title_Count'>Count</span>
+                                </div>
+                                <div id='LogContainer' className='mr-3'>
+                                    {this.props.logs && this.props.logs.map((logs, idx) =>
+                                        <Workouthistory key={idx} {...logs} />
+                                    )}
+                                </div>
+                            </Fragment>
                         }
-                        <div id='LogContainer' className='mr-3'>
-                            {this.props.logs && this.props.logs.map((logs, idx) =>
-                                <Workouthistory key={idx} {...logs} />
-                            )}
-                        </div>
                     </div>
                 </Collapse>
             </Fragment>

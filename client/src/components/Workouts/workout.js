@@ -43,9 +43,6 @@ class Workout extends Component {
     }
 
     render(){
-        if(!this.props.workouts){
-            return <div/>
-        }
         return Object.keys(this.props.workouts)
         .map(key => {
             return [...Array(this.props.workouts[key])].map(() => {

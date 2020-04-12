@@ -6,6 +6,7 @@ import './styles/App.scss';
 import register from '../src/components/auth/register';
 import dashboard from '../src/components/dashboard/dashboard';
 import workout from './components/Workouts/workout';
+import activity from './components/activity/activity';
 import { connect } from 'react-redux';
 
 
@@ -18,10 +19,8 @@ class App extends Component{
         <Route exact path='/' component={Landing} />
         <Route path='/Register' component={register} />
         <Route path='/Dashboard' component={dashboard}/>
-        <Route 
-          path = '/Workout/:id' 
-          component = {workout}
-          />
+        <Route path='/Workout/:id' component={workout}/>
+        <Route path='/Activity' component={activity}/>
         </Router>
       )
   }

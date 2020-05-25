@@ -19,6 +19,7 @@ import {
     CLEAR_REGISTERERROR,
     CLEAR_LOGINERROR,
     FETCH_WORKOUTHISTORY,
+    FETCH_ACTIVITY,
     FETCH_MAXWEIGHT
   } from "../store/actions";
   
@@ -27,6 +28,7 @@ import {
     workouts: [],
     logs: [],
     workoutHistory: [],
+    activity: [],
     loading: false,
     error: null,
     loginError: null,
@@ -121,6 +123,13 @@ import {
                 ...state,
                 loading: false,
                 workoutHistory: action.payload.workoutHist
+            };
+
+        case FETCH_ACTIVITY:
+            return {
+                ...state,
+                loading: false,
+                activity: action.payload.activity
             };
 
         case FETCH_MAXWEIGHT:

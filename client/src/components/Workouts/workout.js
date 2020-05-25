@@ -1,9 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Workoutlog from './Workout/workoutlog';
 import { connect } from 'react-redux';
-import { fetchExercises } from '../../store/actions';
-import { expandExercise } from '../../store/actions';
-import { closeExpandExercise } from '../../store/actions';
+import { fetchExercises, expandExercise, closeExpandExercise } from '../../store/actions';
 
 class Workout extends Component {
     constructor(props){

@@ -7,7 +7,7 @@ const BackWorkoutlog = require('../../models/Workoutlog').BackWorkoutlog;
 const TricepsWorkoutlog = require('../../models/Workoutlog').TricepsWorkoutlog;
 const ShoulderWorkoutlog = require('../../models/Workoutlog').ShoulderWorkoutlog;
 const BicepsWorkoutlog = require('../../models/Workoutlog').BicepsWorkoutlog;
-
+const Workoutlog = require('../../models/Workoutlog').Workoutlog;
 const MaxWeight = require('../../models/MaxWeight');
 
 //@route POST api/workoutlog
@@ -25,13 +25,14 @@ router.post('/',
         if(!errors.isEmpty()){
             return res.status(400).json({ errors: errors.array()});
         }
-        const { userId, name, date, weight, unit, count } = req.body;
+        const { userId, category, name, date, weight, unit, count } = req.body;
         try{
             let workoutlog = {};
             switch(req.body.category){
                 case 'Chest': {
                     workoutlog = new ChestWorkoutlog({
                         userId,
+                        category,
                         name,
                         date,
                         weight,
@@ -43,6 +44,7 @@ router.post('/',
                 case 'Leg': {
                     workoutlog = new LegWorkoutlog({
                         userId,
+                        category,
                         name,
                         date,
                         weight,
@@ -54,6 +56,7 @@ router.post('/',
                 case 'Back': {
                     workoutlog = new BackWorkoutlog({
                         userId,
+                        category,
                         name,
                         date,
                         weight,
@@ -65,6 +68,7 @@ router.post('/',
                 case 'Triceps': {
                     workoutlog = new TricepsWorkoutlog({
                         userId,
+                        category,
                         name,
                         date,
                         weight,
@@ -76,6 +80,7 @@ router.post('/',
                 case 'Shoulder': {
                     workoutlog = new ShoulderWorkoutlog({
                         userId,
+                        category,
                         name,
                         date,
                         weight,
@@ -87,6 +92,7 @@ router.post('/',
                 case 'Biceps': {
                     workoutlog = new BicepsWorkoutlog({
                         userId,
+                        category,
                         name,
                         date,
                         weight,
@@ -100,6 +106,16 @@ router.post('/',
                 }
             }
 
+            await workoutlog.save();
+            workoutlog = new Workoutlog({
+                userId,
+                category,
+                name,
+                date,
+                weight,
+                unit,
+                count
+            });
             await workoutlog.save();
             res.send('Workoutlog added!');
         }
@@ -168,5 +184,20 @@ router.post('/log',
         }
     }
 )
+
+//@route GET api/workoutlog/logs
+//@desc Get logs of all exercises
+router.post('/logs',
+    async(req, res) => {
+        try{
+            const { userId } = req.body;
+            let logs = await Workoutlog.find({ userId: userId }).sort({ date: -1 });
+            res.json(logs);
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+);
 
 module.exports = router;

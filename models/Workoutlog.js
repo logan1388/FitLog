@@ -5,6 +5,10 @@ const workoutlogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    category: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true
@@ -29,6 +33,8 @@ const workoutlogSchema = new mongoose.Schema({
         type: Number
     }
 });
+
+var Workoutlog = mongoose.model('workoutlogs', workoutlogSchema);
 var ChestWorkoutlog = mongoose.model('chestworkoutlogs', workoutlogSchema);
 var LegWorkoutlog = mongoose.model('legworkoutlogs', workoutlogSchema);
 var BackWorkoutlog = mongoose.model('backworkoutlogs', workoutlogSchema);
@@ -37,6 +43,7 @@ var ShoulderWorkoutlog = mongoose.model('shoulderworkoutlogs', workoutlogSchema)
 var BicepsWorkoutlog = mongoose.model('bicepsworkoutlogs', workoutlogSchema);
 
 module.exports = {
+    Workoutlog: Workoutlog,
     ChestWorkoutlog: ChestWorkoutlog,
     LegWorkoutlog: LegWorkoutlog,
     BackWorkoutlog: BackWorkoutlog,

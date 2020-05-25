@@ -32,6 +32,7 @@ export const CLEAR_REGISTERERROR = "CLEAR_REGISTERERROR";
 export const CLEAR_LOGINERROR = "CLEAR_LOGINERROR";
 
 export const FETCH_WORKOUTHISTORY = "FETCH_WORKOUTHISTORY";
+export const FETCH_ACTIVITY = "FETCH_ACTIVITY";
 
 export const FETCH_MAXWEIGHT = "FETCH_MAXWEIGHT";
 
@@ -201,6 +202,21 @@ export const workoutHistory = (userId) => {
     }
 }
 
+export const activities = (userId) => {
+    return dispatch => {
+        let param = {
+            userId: userId
+        }
+        axios.post(endpoint+'/api/workoutlog/logs', param)
+            .then(res => {
+                console.log(res);
+                let activity = res.data;
+                dispatch(activitySuccess(activity));
+            })
+            .catch(error => console.log(error));
+    }
+}
+
 export const fetchExercisesBegin = () => ({
     type: FETCH_EXERCISES_BEGIN
 });
@@ -290,6 +306,11 @@ export const clearLoginErrorMsg = () => ({
 export const workoutHistorySuccess = workoutHist => ({
     type: FETCH_WORKOUTHISTORY,
     payload: { workoutHist }
+});
+
+export const activitySuccess = activity => ({
+    type: FETCH_ACTIVITY,
+    payload: { activity }
 });
 
 export const fetchMaxWeightSuccess = maxWeight => ({

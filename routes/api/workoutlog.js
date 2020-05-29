@@ -191,7 +191,18 @@ router.post('/logs',
     async(req, res) => {
         try{
             const { userId } = req.body;
+            let exercise = {};
             let logs = await Workoutlog.find({ userId: userId }).sort({ date: -1 });
+            for(let log of logs) {
+                if(exercise[log.name]) {
+                    log.maxWeight = exercise[log.name];
+                }
+                else {
+                    const maxWt = await MaxWeight.findOne({ userId: userId, name: log.name });
+                    exercise[log.name] = maxWt.weight;
+                    log.maxWeight = exercise[log.name];
+                }
+            }
             res.json(logs);
         }
         catch(err){

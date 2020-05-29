@@ -14,35 +14,34 @@ class Header extends Component {
         this.props.dispatch(logout());
     }
     toggleNav = () => {
-        this.setState({sideNav: !this.state.sideNav})
+        this.setState({ sideNav: !this.state.sideNav })
         console.log(this.state.sideNav);
     }
     render() {
         let user = localStorage.getItem('user');
         return (
             <Fragment>
-                <nav className="navbar navbar-dark bg-dark">
-                    <div id='HamburgerIcon' onClick={this.toggleNav}>
-                        <span className='line'></span>
-                        <span className='line'></span>
-                        <span className='line'></span>
+                <nav className="navbar navbar-dark bg-dark p-0">
+                    <div id='nav-icon4' onClick={this.toggleNav} className={this.state.sideNav ? 'open ': '' + 'd-block d-sm-none'}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-                    {this.state.sideNav &&
-                        <div id="mySidenav" className="sidenav">
-                            <a href="javascript:void(0)" className="closebtn" onClick={this.toggleNav}>&times;</a>
-                            <a href="#">Progress</a>
-                            <a href="#">Activity</a>
-                        </div>}
                     {this.props.user.id || user ?
                         <Fragment>
-                            <span className='NavTitle h2 mb-0'><Link to='/Dashboard'>FITLOG</Link></span>
-                            <div>
+                            <div className='NavTitle h2'><Link to='/Dashboard'>FITLOG</Link></div>
+                            <div className='d-none d-sm-block'>
                                 <span className='NavOptions m-3'><Link to='/Progress'>Progress</Link></span>
                                 <span className='NavOptions m-3'><Link to='/Activity'>Activity</Link></span>
                             </div>
                             <div id='NavLinks'>
                                 <span onClick={this.logOut}><Link to='/'><i className="fa fa-user fa-2x"></i></Link></span>
                             </div>
+                            {this.state.sideNav &&
+                                <div id="mySidenav" className="sidenav d-block d-sm-none">
+                                    <Link to='/Progress'>Progress</Link>
+                                    <Link to='/Activity' onClick={this.toggleNav}>Activity</Link>
+                                </div>}
                         </Fragment> : <Fragment><span className='NavTitle-center h2'><Link to='/'>FITLOG</Link></span></Fragment>}
                 </nav>
             </Fragment>

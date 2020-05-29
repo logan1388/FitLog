@@ -173,7 +173,8 @@ input:focus{
 
 .NavTitle {
   color: $titleColor;
-  margin-right: 0px;
+  // margin-right: 0px;
+  margin: 1rem 3rem !important;
 }
 
 .NavTitle-center {
@@ -190,6 +191,76 @@ input:focus{
   margin-top: 2px;
 }
 
+#nav-icon4 {
+  padding: 1rem 1.25rem;
+  span {
+    display: block;
+    float: none;
+  }
+}
+
+#nav-icon4 span:nth-child(1) {
+  top: 0px;
+  background-color: $titleColor;
+  height: 3px;
+  width: 30px;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: 20%;
+}
+
+#nav-icon4 span:nth-child(2) {
+  top: 18px;
+  background-color: $titleColor;
+  height: 3px;
+  width: 30px;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+#nav-icon4 span:nth-child(3) {
+  top: 36px;
+  background-color: $titleColor;
+  height: 3px;
+  width: 30px;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: 5%;
+}
+
+#nav-icon4.open span:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: -3px;
+  left: 8px;
+}
+
+#nav-icon4.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+#nav-icon4.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 39px;
+  left: 8px;
+}
+
 #NavLinks {
   display: inline-block;
   margin-right: 30px;
@@ -200,6 +271,7 @@ input:focus{
 }
 
 #HamburgerIcon {
+  padding: 1rem 1.25rem;
   span {
     display: block;
     float: none;
@@ -343,22 +415,23 @@ input:focus{
 }
 
 .sidenav {
-  height: 100%;
-  width: 250px;
-  position: fixed;
+  //height: 100%;
+  width: 100%;
+  position: relative;
   z-index: 1;
   top: 0;
   left: 0;
   background-color: #343a40;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  // padding-top: 60px;
+  text-align: center;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding: 5px 15px 10px 25px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 18px;
   color: $titleColor;
   display: block;
   transition: 0.3s;
@@ -376,18 +449,20 @@ input:focus{
   margin-left: 50px;
 }
 
+.dashboard-category {
+  min-width: 100px;
+}
+
 /* Media queries */
 @media only screen and (min-width: 450px) {
   .card {
     width: 400px;
   }
+}
 
-  #HamburgerIcon {
-    display: none;
-  }
-
-  .NavTitle {
-    margin-left: 30px;
+@media only screen and (min-width: 576px) {
+  #NavLinks {
+    margin-right: 3rem;
   }
 }
 

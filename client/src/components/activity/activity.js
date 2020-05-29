@@ -6,7 +6,7 @@ import moment from 'moment';
 
 class Activity extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.exercises = {};
   }
@@ -15,29 +15,37 @@ class Activity extends Component {
     const id = JSON.parse(localStorage.getItem('user')).data.user.id;
     const userId = this.props.user.id ? this.props.user.id : id;
     this.props.dispatch(activities(userId));
-    this.exercises = {};
   }
 
   render() {
+    this.exercises = {};
     this.props.activity.map((activity, idx) => {
       activity.date = moment(activity.date).format('MM/DD/YY');
       activity.id = idx + 1;
-      if(this.exercises[activity.name])
+      if (this.exercises[activity.name]){
         activity.parentId = this.exercises[activity.name];
+      }
       else
         this.exercises[activity.name] = activity.id;
     });
-    
+    console.log('activity: ',this.props.activity);
+
     return (
       <React.Fragment>
         <div className='m-3'>
           <MaterialTable
-            title="Activity"
-            options={{ search: false }}
+            title=""
+            options={{
+              paging: false,
+              headerStyle: {
+                backgroundColor: 'lightgrey'
+              },
+              selection: false
+            }}
             columns={[
               { title: 'Date', field: 'date' },
               { title: 'Workout', field: 'name' },
-              { title: 'Max weight', field: 'maxwt', type: 'numeric' },
+              { title: 'Max weight', field: 'maxWeight', type: 'numeric' },
               { title: 'Weight', field: 'weight', type: 'numeric' },
               { title: 'Count', field: 'count', type: 'numeric' }
             ]}
@@ -48,7 +56,7 @@ class Activity extends Component {
             //   { id: 4, workout: 'Squat', weight: 50, count: 8, parentId: 3 }
             // ]}
             data={this.props.activity}
-            parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
+            parentChildData={(row, rows) => rows.find(a => (a.id === row.parentId))}
           />
         </div>
       </React.Fragment>

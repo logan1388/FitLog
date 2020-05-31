@@ -24,6 +24,7 @@ class Activity extends Component {
       activity.id = idx + 1;
       if (this.exercises[activity.name]){
         activity.parentId = this.exercises[activity.name];
+        activity.maxWeight = '';
       }
       else
         this.exercises[activity.name] = activity.id;
@@ -34,27 +35,23 @@ class Activity extends Component {
       <React.Fragment>
         <div className='m-3'>
           <MaterialTable
-            title=""
             options={{
+              showTitle: false,
               paging: false,
               headerStyle: {
                 backgroundColor: 'lightgrey'
               },
+              padding: "dense",
               selection: false
             }}
             columns={[
               { title: 'Date', field: 'date' },
               { title: 'Workout', field: 'name' },
-              { title: 'Max weight', field: 'maxWeight', type: 'numeric' },
+              { title: 'Max Wt', field: 'maxWeight', type: 'numeric' },
+              { title: 'Max Wt Count', field: 'maxWeightCount', type: 'numeric' },
               { title: 'Weight', field: 'weight', type: 'numeric' },
               { title: 'Count', field: 'count', type: 'numeric' }
             ]}
-            // data={[
-            //   { id: 1, date: '04-07-2020', workout: 'Bench Press', maxwt: 50, count: 10 },
-            //   { id: 2, workout: 'Bench Press', weight: 45, count: 10, parentId: 1 },
-            //   { id: 3, date: '04-07-2020', workout: 'Squat', maxwt: 85, count: 6 },
-            //   { id: 4, workout: 'Squat', weight: 50, count: 8, parentId: 3 }
-            // ]}
             data={this.props.activity}
             parentChildData={(row, rows) => rows.find(a => (a.id === row.parentId))}
           />

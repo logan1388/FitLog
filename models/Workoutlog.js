@@ -31,6 +31,9 @@ const workoutlogSchema = new mongoose.Schema({
     },
     maxWeight: {
         type: Number
+    },
+    maxWeightCount: {
+        type: Number
     }
 });
 

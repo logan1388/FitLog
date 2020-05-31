@@ -15,14 +15,13 @@ class Header extends Component {
     }
     toggleNav = () => {
         this.setState({ sideNav: !this.state.sideNav })
-        console.log(this.state.sideNav);
     }
     render() {
         let user = localStorage.getItem('user');
         return (
             <Fragment>
                 <nav className="navbar navbar-dark bg-dark p-0">
-                    <div id='nav-icon4' onClick={this.toggleNav} className={this.state.sideNav ? 'open ': '' + 'd-block d-sm-none'}>
+                    <div id='nav-icon4' onClick={this.toggleNav} className={this.state.sideNav ? 'open ' : '' + 'd-block d-sm-none'}>
                         <span></span>
                         <span></span>
                         <span></span>

@@ -201,6 +201,7 @@ router.post('/logs',
                     const maxWt = await MaxWeight.findOne({ userId: userId, name: log.name });
                     exercise[log.name] = maxWt.weight;
                     log.maxWeight = exercise[log.name];
+                    log.maxWeightCount = maxWt.count;
                 }
             }
             res.json(logs);

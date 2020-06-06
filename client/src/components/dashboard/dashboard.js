@@ -13,7 +13,8 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        let id = JSON.parse(localStorage.getItem('user')).data.user.id;
+        const user = JSON.parse(localStorage.getItem('user'));
+        let id = user && user.data.user.id;
         this.props.dispatch(workoutHistory(id));
     }
 

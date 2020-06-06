@@ -21,13 +21,13 @@ class Header extends Component {
         return (
             <Fragment>
                 <nav className="navbar navbar-dark bg-dark p-0">
-                    <div id='nav-icon4' onClick={this.toggleNav} className={this.state.sideNav ? 'open ' : '' + 'd-block d-sm-none'}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
                     {this.props.user.id || user ?
                         <Fragment>
+                            <div id='nav-icon4' onClick={this.toggleNav} className={this.state.sideNav ? 'open d-block d-sm-none' : 'd-block d-sm-none'}>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                             <div className='NavTitle h2'><Link to='/Dashboard'>FITLOG</Link></div>
                             <div className='d-none d-sm-block'>
                                 <span className='NavOptions m-3'><Link to='/Progress'>Progress</Link></span>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult} = require('express-validator/check');
 const Workout = require('../../models/Workout');
+const Workoutlog = require('../../models/Workoutlog').Workoutlog;
 //const config = require('config');
 const moment = require('moment');
 
@@ -54,6 +55,21 @@ router.post('/workoutHistory',
             let start = moment().startOf('day');
             const workoutHistory = await Workout.find({ userId, date: {$lt: start} }).sort({ date: -1 });
             res.json(workoutHistory);
+        }
+        catch(err){
+
+        }
+    }
+)
+
+router.post('/workoutSummary',
+    async(req, res) => {
+        const userId = req.body.userId;
+        try {
+            let start = moment().startOf('day');
+            console.log('date: ', start);
+            const workoutSummary = await Workoutlog.find({ userId, date: {$gt: start} }).sort({ date: -1, category: 1 });
+            res.json(workoutSummary);
         }
         catch(err){
 

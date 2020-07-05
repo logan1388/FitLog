@@ -7,7 +7,7 @@ router.post('/',
         const { userId, name, date, weight, unit, count } = req.body;
         try{
             const prevMaxWeight = await MaxWeight.find({ userId: userId, name: name });
-            if(prevMaxWeight.length == 0 || prevMaxWeight[0].weight < weight){
+            if(prevMaxWeight.length == 0 || prevMaxWeight[0].weight < weight || (prevMaxWeight[0].weight == weight && prevMaxWeight[0].count < count)){
                 const maxWeightRemoved = await MaxWeight.deleteOne({ userId: userId, name: name });
                 let maxWeight = new MaxWeight({
                     userId,
